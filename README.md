@@ -3,23 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Elektroniczny Dziennik 4F</title>
+<title>Elektroniczny Dziennik</title>
 
 <style>
 :root {
-  --bg:#101722;
-  --bg2:#172333;
-  --panel:#1d2b3d;
-  --panel2:#23354a;
-  --text:#edf4fc;
-  --muted:#9eafc2;
-  --blue:#3d8bea;
-  --blue-dark:#1d5da5;
-  --green:#20ad62;
-  --red:#dc4141;
-  --orange:#d99124;
-  --border:#33475e;
-  --shadow:#0008;
+  --blue:#163b68;
+  --blue2:#245b98;
+  --light:#f1f5f9;
+  --white:#ffffff;
+  --text:#172033;
+  --muted:#64748b;
+  --border:#dbe3ed;
+  --green:#159447;
+  --orange:#e68a00;
+  --red:#d62828;
 }
 
 * {
@@ -28,15 +25,16 @@
 
 body {
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
+  font-family:Arial, Helvetica, sans-serif;
+  background:var(--light);
   color:var(--text);
 }
 
 header {
+  background:linear-gradient(135deg,var(--blue),var(--blue2));
+  color:white;
   padding:22px;
-  background:linear-gradient(135deg,#102d50,#1f5d9d);
-  box-shadow:0 2px 10px var(--shadow);
+  box-shadow:0 2px 8px #0003;
 }
 
 header h1 {
@@ -46,12 +44,12 @@ header h1 {
 
 header p {
   margin:4px 0;
-  color:#dbeafe;
+  opacity:.95;
 }
 
 .student {
   font-weight:bold;
-  font-size:16px;
+  font-size:15px;
 }
 
 nav {
@@ -59,18 +57,17 @@ nav {
   flex-wrap:wrap;
   gap:8px;
   padding:12px;
-  background:var(--bg2);
+  background:white;
   border-bottom:1px solid var(--border);
   position:sticky;
   top:0;
   z-index:5;
-  box-shadow:0 2px 8px #0005;
 }
 
 nav button {
   border:0;
-  background:#263a51;
-  color:#dcecff;
+  background:#e7eef7;
+  color:var(--blue);
   padding:10px 13px;
   border-radius:8px;
   cursor:pointer;
@@ -97,10 +94,6 @@ main {
   display:block;
 }
 
-h2, h3 {
-  color:#8fc4ff;
-}
-
 .cards {
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
@@ -110,17 +103,17 @@ h2, h3 {
 
 .card,
 .panel {
-  background:var(--panel);
+  background:white;
   border:1px solid var(--border);
   border-radius:12px;
   padding:18px;
-  box-shadow:0 2px 8px #0004;
+  box-shadow:0 2px 5px #0000000b;
 }
 
 .card strong {
   display:block;
   font-size:28px;
-  color:#8fc4ff;
+  color:var(--blue);
   margin-top:7px;
 }
 
@@ -129,70 +122,67 @@ h2, h3 {
   color:var(--muted);
 }
 
+h2,
+h3 {
+  color:var(--blue);
+}
+
 table {
   width:100%;
   border-collapse:collapse;
+  background:white;
+  border-radius:10px;
   overflow:hidden;
 }
 
 th,
 td {
-  padding:12px 10px;
+  padding:11px;
   border-bottom:1px solid var(--border);
   text-align:left;
   vertical-align:middle;
 }
 
 th {
-  color:#a8d0ff;
-  background:var(--panel2);
+  background:#e9f0f8;
+  color:var(--blue);
 }
 
 tr:hover td {
-  background:#263a50;
+  background:#f8fbff;
 }
 
-.grade-list {
+.grades {
   display:flex;
   flex-wrap:wrap;
   gap:7px;
 }
 
-.grade-box {
-  width:38px;
-  height:38px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
+.grade {
+  width:35px;
+  height:35px;
   border:0;
   border-radius:7px;
-  background:var(--blue-dark);
+  background:var(--blue2);
   color:white;
   font-weight:bold;
   cursor:pointer;
-  font-size:15px;
+  transition:.2s;
 }
 
-.grade-box:hover {
-  background:#58a1f5;
-  transform:scale(1.05);
+.grade:hover {
+  background:var(--green);
+  transform:scale(1.08);
+}
+
+.no-grades {
+  color:var(--muted);
+  font-style:italic;
 }
 
 .average {
-  color:#8fc4ff;
-  font-size:17px;
   font-weight:bold;
-  white-space:nowrap;
-}
-
-.info-box {
-  margin-top:10px;
-  padding:12px;
-  border-left:4px solid var(--blue);
-  background:#16263a;
-  color:#dcecff;
-  border-radius:6px;
-  line-height:1.5;
+  color:var(--blue);
 }
 
 .schedule {
@@ -202,7 +192,7 @@ tr:hover td {
 }
 
 .day {
-  background:var(--panel);
+  background:white;
   border:1px solid var(--border);
   border-radius:12px;
   padding:15px;
@@ -210,13 +200,15 @@ tr:hover td {
 
 .day h3 {
   margin-top:0;
+  border-bottom:1px solid var(--border);
+  padding-bottom:8px;
 }
 
 .lesson {
   padding:10px;
-  border-left:4px solid var(--blue);
-  background:#23354a;
-  margin:8px 0;
+  border-left:4px solid var(--blue2);
+  background:#f8fbff;
+  margin:7px 0;
   border-radius:5px;
 }
 
@@ -227,9 +219,12 @@ tr:hover td {
   margin-bottom:4px;
 }
 
-.empty {
-  color:var(--muted);
-  font-style:italic;
+.info-box {
+  background:#f8fbff;
+  border-left:4px solid var(--blue2);
+  padding:13px;
+  border-radius:6px;
+  margin-top:15px;
 }
 
 footer {
@@ -239,32 +234,69 @@ footer {
   font-size:13px;
 }
 
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0008;
+  z-index:20;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show {
+  display:flex;
+}
+
+.modal-content {
+  width:100%;
+  max-width:420px;
+  background:white;
+  border-radius:12px;
+  padding:22px;
+  box-shadow:0 5px 25px #0005;
+}
+
+.modal-content h2 {
+  margin-top:0;
+}
+
+.modal-row {
+  padding:9px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.close {
+  width:100%;
+  margin-top:18px;
+  border:0;
+  padding:11px;
+  border-radius:7px;
+  background:var(--blue);
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
 @media(max-width:600px) {
   main {
     padding:12px;
   }
 
-  header {
-    padding:18px;
+  th,
+  td {
+    padding:8px 5px;
+    font-size:13px;
   }
 
   header h1 {
     font-size:21px;
   }
 
-  th,
-  td {
-    padding:9px 5px;
-    font-size:12px;
-  }
-
-  .grade-box {
-    width:34px;
-    height:34px;
-  }
-
-  .average {
-    font-size:14px;
+  .grade {
+    width:32px;
+    height:32px;
   }
 }
 </style>
@@ -274,18 +306,15 @@ footer {
 
 <header>
   <h1>Elektroniczny Dziennik</h1>
-  <p>Zespół Szkół Budowlano-Geodezyjnych · Klasa 4F</p>
-  <p class="student">Uczeń: Adrian Szutko</p>
+  <p>Zespół Szkół Budowlano-Geodezyjnych</p>
+  <p class="student">Uczeń: Adrian Szutko · Klasa 4F</p>
 </header>
 
 <nav>
   <button class="tab active" data-tab="start">Start</button>
   <button class="tab" data-tab="grades">Oceny</button>
-  <button class="tab" data-tab="attendance">Frekwencja</button>
   <button class="tab" data-tab="schedule">Plan lekcji</button>
   <button class="tab" data-tab="teachers">Nauczyciele</button>
-  <button class="tab" data-tab="remarks">Uwagi</button>
-  <button class="tab" data-tab="messages">Wiadomości</button>
 </nav>
 
 <main>
@@ -295,14 +324,14 @@ footer {
 
   <div class="cards">
     <div class="card">
-      Frekwencja
-      <strong>100%</strong>
-      <small>obecności</small>
+      Uczeń
+      <strong style="font-size:21px;">Adrian Szutko</strong>
+      <small>klasa 4F</small>
     </div>
 
     <div class="card">
       Średnia ocen
-      <strong id="average">-</strong>
+      <strong id="mainAverage">-</strong>
       <small>średnia ważona</small>
     </div>
 
@@ -320,10 +349,19 @@ footer {
   </div>
 
   <div class="panel">
-    <h3>Informacje o uczniu</h3>
-    <p><b>Imię i nazwisko:</b> Adrian Szutko</p>
-    <p><b>Klasa:</b> 4F</p>
-    <p><b>Szkoła:</b> Zespół Szkół Budowlano-Geodezyjnych</p>
+    <h3>Informacje o ocenach</h3>
+    <p>
+      Oceny są obliczane jako średnia ważona.
+      Kliknij dowolny kwadrat z oceną, aby zobaczyć szczegóły.
+    </p>
+
+    <div class="info-box">
+      <b>Wagi ocen:</b><br>
+      Sprawdzian: 4<br>
+      Kartkówka: 2<br>
+      Odpowiedź ustna: 1<br>
+      Praca na lekcji: 1
+    </div>
   </div>
 </section>
 
@@ -332,19 +370,9 @@ footer {
 
   <div class="panel">
     <p class="muted">
-      Kliknij kwadrat z oceną, aby zobaczyć nauczyciela, rodzaj pracy,
-      datę oraz wagę oceny.
+      Kliknij kwadrat z oceną, aby zobaczyć nauczyciela, rodzaj pracy i datę.
     </p>
 
-    <div class="info-box">
-      Wagi: sprawdzian - 4, kartkówka - 2, odpowiedź ustna - 1,
-      praca na lekcji - 1.
-    </div>
-  </div>
-
-  <br>
-
-  <div class="panel">
     <table>
       <thead>
         <tr>
@@ -354,29 +382,6 @@ footer {
         </tr>
       </thead>
       <tbody id="gradesTable"></tbody>
-    </table>
-  </div>
-
-  <div id="gradeInfo"></div>
-</section>
-
-<section id="attendance" class="section">
-  <h2>Frekwencja</h2>
-
-  <div class="panel">
-    <table>
-      <thead>
-        <tr>
-          <th>Data</th>
-          <th>Przedmiot</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td colspan="3" class="empty">Brak wpisów dotyczących nieobecności.</td>
-        </tr>
-      </tbody>
     </table>
   </div>
 </section>
@@ -402,29 +407,38 @@ footer {
   </div>
 </section>
 
-<section id="remarks" class="section">
-  <h2>Uwagi</h2>
-
-  <div class="panel">
-    <p class="empty">Brak uwag.</p>
-  </div>
-</section>
-
-<section id="messages" class="section">
-  <h2>Wiadomości</h2>
-
-  <div class="panel">
-    <p class="empty">Brak wiadomości.</p>
-  </div>
-</section>
-
 </main>
 
 <footer>
-  Elektroniczny Dziennik · Klasa 4F · Adrian Szutko
+  Elektroniczny Dziennik · Adrian Szutko · Klasa 4F
 </footer>
 
+<div id="gradeModal" class="modal">
+  <div class="modal-content">
+    <h2>Szczegóły oceny</h2>
+    <div id="modalDetails"></div>
+    <button class="close" onclick="closeModal()">Zamknij</button>
+  </div>
+</div>
+
 <script>
+const subjects = [
+  "Język Polski",
+  "Matematyka",
+  "Język Angielski",
+  "Język Angielski w Budownictwie",
+  "Fizyka",
+  "Fizyka Techniczna",
+  "Geografia",
+  "Historia",
+  "Język Niemiecki",
+  "Kształtowanie Kompetencji Zawodowych",
+  "Obsługa Systemów Energetyki Odnawialnej",
+  "Systemy Energii Odnawialnej",
+  "Wychowanie Fizyczne",
+  "Umiejętności Rynkowe - Przygotowanie do egzaminu na uprawnienia elektryczne G1"
+];
+
 const teachers = {
   "Matematyka":"Joanna Wasilewska",
   "Fizyka":"Paweł Klim",
@@ -432,122 +446,68 @@ const teachers = {
   "Język Angielski":"Anna Mróz",
   "Język Angielski w Budownictwie":"Anna Mróz",
   "Język Polski":"Dorota Puciłowska",
-  "Geografia":"Marek Zieliński",
-  "Historia":"Katarzyna Wójcik",
+  "Geografia":"Nie podano",
+  "Historia":"Nie podano",
+  "Język Niemiecki":"Nie podano",
   "Systemy Energii Odnawialnej":"Beata Polonis",
   "Obsługa Systemów Energetyki Odnawialnej":"Beata Polonis",
   "Kształtowanie Kompetencji Zawodowych":"Beata Polonis",
   "Wychowanie Fizyczne":"Zbigniew Kulikowski",
-  "Umiejętności Rynkowe":"Tomasz Rolak"
+  "Umiejętności Rynkowe - Przygotowanie do egzaminu na uprawnienia elektryczne G1":"Tomasz Rolak"
 };
 
-const grades = [
-  {
-    subject:"Język Polski",
-    value:"3",
-    type:"Kartkówka",
-    date:"12.10.2026",
-    weight:2
-  },
-  {
-    subject:"Systemy Energii Odnawialnej",
-    value:"3",
-    type:"Kartkówka",
-    date:"21.09.2026",
-    weight:2
-  },
-  {
-    subject:"Systemy Energii Odnawialnej",
-    value:"3",
-    type:"Kartkówka",
-    date:"09.10.2026",
-    weight:2
-  },
-  {
-    subject:"Wychowanie Fizyczne",
-    value:"5",
-    type:"Sprawdzian",
-    date:"22.09.2026",
-    weight:4
-  },
-  {
-    subject:"Wychowanie Fizyczne",
-    value:"5-",
-    type:"Praca na lekcji",
-    date:"06.10.2026",
-    weight:1
-  },
-  {
-    subject:"Obsługa Systemów Energetyki Odnawialnej",
-    value:"3",
-    type:"Odpowiedź ustna",
-    date:"10.09.2026",
-    weight:1
-  },
-  {
-    subject:"Obsługa Systemów Energetyki Odnawialnej",
-    value:"4-",
-    type:"Kartkówka",
-    date:"17.09.2026",
-    weight:2
-  },
-  {
-    subject:"Język Angielski w Budownictwie",
-    value:"6",
-    type:"Kartkówka",
-    date:"25.09.2026",
-    weight:2
-  },
-  {
-    subject:"Język Angielski",
-    value:"4",
-    type:"Kartkówka",
-    date:"09.10.2026",
-    weight:2
-  },
-  {
-    subject:"Geografia",
-    value:"3",
-    type:"Sprawdzian",
-    date:"04.10.2026",
-    weight:4
-  },
-  {
-    subject:"Geografia",
-    value:"3",
-    type:"Kartkówka",
-    date:"27.09.2026",
-    weight:2
-  },
-  {
-    subject:"Fizyka Techniczna",
-    value:"4",
-    type:"Praca na lekcji",
-    date:"05.10.2026",
-    weight:1
-  },
-  {
-    subject:"Fizyka Techniczna",
-    value:"2",
-    type:"Praca na lekcji",
-    date:"12.10.2026",
-    weight:1
-  },
-  {
-    subject:"Fizyka",
-    value:"4",
-    type:"Kartkówka",
-    date:"29.09.2026",
-    weight:2
-  },
-  {
-    subject:"Fizyka",
-    value:"3",
-    type:"Praca na lekcji",
-    date:"30.09.2026",
-    weight:1
-  }
-];
+const gradeWeights = {
+  "sprawdzian":4,
+  "kartkówka":2,
+  "kartkowka":2,
+  "odpowiedź ustna":1,
+  "odpowiedz ustna":1,
+  "praca na lekcji":1
+};
+
+const grades = {
+  "Język Polski": [
+    {value:"3", type:"Kartkówka", date:"12.10.2026"}
+  ],
+
+  "Systemy Energii Odnawialnej": [
+    {value:"3", type:"Kartkówka", date:"21.09.2026"},
+    {value:"3", type:"Kartkówka", date:"09.10.2026"}
+  ],
+
+  "Wychowanie Fizyczne": [
+    {value:"5", type:"Sprawdzian", date:"22.09.2026"},
+    {value:"5-", type:"Praca na lekcji", date:"06.10.2026"}
+  ],
+
+  "Obsługa Systemów Energetyki Odnawialnej": [
+    {value:"3", type:"Odpowiedź ustna", date:"10.09.2026"},
+    {value:"4-", type:"Kartkówka", date:"17.09.2026"}
+  ],
+
+  "Język Angielski w Budownictwie": [
+    {value:"6", type:"Kartkówka", date:"25.09.2026"}
+  ],
+
+  "Język Angielski": [
+    {value:"4", type:"Kartkówka", date:"09.10.2026"}
+  ],
+
+  "Geografia": [
+    {value:"3", type:"Sprawdzian", date:"04.10.2026"},
+    {value:"3", type:"Kartkówka", date:"27.09.2026"}
+  ],
+
+  "Fizyka Techniczna": [
+    {value:"4", type:"Praca na lekcji", date:"05.10.2026"},
+    {value:"2", type:"Praca na lekcji", date:"12.10.2026"}
+  ],
+
+  "Fizyka": [
+    {value:"4", type:"Kartkówka", date:"29.09.2026"},
+    {value:"3", type:"Praca na lekcji", date:"30.09.2026"}
+  ]
+};
 
 const schedule = {
   "Poniedziałek":[
@@ -561,6 +521,7 @@ const schedule = {
     ["14:30 - 15:15","Umiejętności Rynkowe"],
     ["15:20 - 16:05","Historia"]
   ],
+
   "Wtorek":[
     ["09:50 - 10:35","Systemy Energii Odnawialnej"],
     ["10:45 - 11:30","Systemy Energii Odnawialnej"],
@@ -569,6 +530,7 @@ const schedule = {
     ["13:35 - 14:20","Wychowanie Fizyczne"],
     ["14:30 - 15:15","Język Angielski"]
   ],
+
   "Środa":[
     ["08:55 - 09:40","Fizyka"],
     ["09:50 - 10:35","Język Angielski w Budownictwie"],
@@ -577,136 +539,136 @@ const schedule = {
     ["12:40 - 13:25","Kształtowanie Kompetencji Zawodowych"],
     ["13:35 - 14:20","Kształtowanie Kompetencji Zawodowych"]
   ],
+
   "Czwartek":[
-    ["08:00 - 08:45","Język Angielski"],
-    ["08:55 - 09:40","Język Angielski"],
-    ["09:50 - 10:35","Geografia"],
-    ["10:45 - 11:30","Wychowanie Fizyczne"],
-    ["11:45 - 12:30","Fizyka Techniczna"]
-  ],
-  "Piątek":[
     ["08:00 - 08:45","Język Polski"],
-    ["08:55 - 09:40","Historia"],
-    ["09:50 - 10:35","Systemy Energii Odnawialnej"],
-    ["10:45 - 11:30","Obsługa Systemów Energetyki Odnawialnej"],
-    ["11:45 - 12:30","Obsługa Systemów Energetyki Odnawialnej"]
+    ["08:55 - 09:40","Język Polski"],
+    ["09:50 - 10:35","Fizyka"],
+    ["10:45 - 11:30","Język Angielski"],
+    ["11:45 - 12:30","Wychowanie Fizyczne"],
+    ["12:40 - 13:25","Systemy Energii Odnawialnej"]
+  ],
+
+  "Piątek":[
+    ["08:00 - 08:45","Geografia"],
+    ["08:55 - 09:40","Matematyka"],
+    ["09:50 - 10:35","Obsługa Systemów Energii Odnawialnej"],
+    ["10:45 - 11:30","Obsługa Systemów Energii Odnawialnej"],
+    ["11:45 - 12:30","Język Angielski w Budownictwie"]
   ]
 };
 
-function gradeToNumber(value) {
-  if (value.endsWith("+")) {
-    return Number(value[0]) + 0.25;
-  }
-
+function numericGrade(value) {
   if (value.endsWith("-")) {
-    return Number(value[0]) - 0.25;
+    return parseFloat(value) - 0.25;
   }
 
-  return Number(value);
+  if (value.endsWith("+")) {
+    return parseFloat(value) + 0.25;
+  }
+
+  return parseFloat(value);
 }
 
-function weightedAverage(subject) {
-  const subjectGrades = grades.filter(g => g.subject === subject);
+function gradeAverage(subject) {
+  const subjectGrades = grades[subject] || [];
 
   if (subjectGrades.length === 0) {
-    return "-";
+    return null;
   }
 
-  let total = 0;
-  let weights = 0;
+  let weightedSum = 0;
+  let totalWeight = 0;
 
   subjectGrades.forEach(grade => {
-    total += gradeToNumber(grade.value) * grade.weight;
-    weights += grade.weight;
+    const type = grade.type.toLowerCase();
+    const weight = gradeWeights[type] || 1;
+
+    weightedSum += numericGrade(grade.value) * weight;
+    totalWeight += weight;
   });
 
-  return (total / weights).toFixed(2);
+  return weightedSum / totalWeight;
+}
+
+function formatAverage(value) {
+  if (value === null) {
+    return "Brak ocen";
+  }
+
+  return value.toFixed(2).replace(".", ",");
 }
 
 function renderGrades() {
   const table = document.getElementById("gradesTable");
-  const subjects = [...new Set(grades.map(grade => grade.subject))];
+  table.innerHTML = "";
 
+  subjects.forEach(subject => {
+    const row = document.createElement("tr");
+    const subjectGrades = grades[subject] || [];
+
+    const gradeContainer = document.createElement("div");
+    gradeContainer.className = "grades";
+
+    if (subjectGrades.length === 0) {
+      gradeContainer.innerHTML = '<span class="no-grades">Brak ocen</span>';
+    } else {
+      subjectGrades.forEach(grade => {
+        const button = document.createElement("button");
+        button.className = "grade";
+        button.textContent = grade.value;
+
+        button.addEventListener("click", () => {
+          showGradeDetails(subject, grade);
+        });
+
+        gradeContainer.appendChild(button);
+      });
+    }
+
+    const average = gradeAverage(subject);
+
+    row.innerHTML = `
+      <td>\({subject}</td>
+      <td></td>
+      <td class="average">\){formatAverage(average)}</td>
+    `;
+
+    row.children[1].appendChild(gradeContainer);
+    table.appendChild(row);
+  });
+}
+
+function showGradeDetails(subject, grade) {
+  const teacher = teachers[subject] || "Nie podano";
+  const weight = gradeWeights[grade.type.toLowerCase()] || 1;
+
+  document.getElementById("modalDetails").innerHTML = `
+    <div class="modal-row"><b>Przedmiot:</b><br>\({subject}</div>
+    <div class="modal-row"><b>Ocena:</b><br>\){grade.value}</div>
+    <div class="modal-row"><b>Nauczyciel:</b><br>\({teacher}</div>
+    <div class="modal-row"><b>Rodzaj pracy:</b><br>\){grade.type}</div>
+    <div class="modal-row"><b>Data:</b><br>\({grade.date}</div>
+    <div class="modal-row"><b>Waga:</b><br>\){weight}</div>
+  `;
+
+  document.getElementById("gradeModal").classList.add("show");
+}
+
+function closeModal() {
+  document.getElementById("gradeModal").classList.remove("show");
+}
+
+function renderTeachers() {
+  const table = document.getElementById("teachersTable");
   table.innerHTML = "";
 
   subjects.forEach(subject => {
     const row = document.createElement("tr");
 
-    const subjectCell = document.createElement("td");
-    subjectCell.textContent = subject;
-
-    const gradesCell = document.createElement("td");
-    const gradeList = document.createElement("div");
-    gradeList.className = "grade-list";
-
-    grades
-      .filter(grade => grade.subject === subject)
-      .forEach(grade => {
-        const button = document.createElement("button");
-        button.className = "grade-box";
-        button.textContent = grade.value;
-        button.title = "Kliknij, aby zobaczyć szczegóły";
-
-        button.addEventListener("click", () => {
-          showGradeInfo(grade);
-        });
-
-        gradeList.appendChild(button);
-      });
-
-    gradesCell.appendChild(gradeList);
-
-    const averageCell = document.createElement("td");
-    averageCell.className = "average";
-    averageCell.textContent = weightedAverage(subject);
-
-    row.appendChild(subjectCell);
-    row.appendChild(gradesCell);
-    row.appendChild(averageCell);
-    table.appendChild(row);
-  });
-
-  document.getElementById("subjectCount").textContent = subjects.length;
-  document.getElementById("gradeCount").textContent = grades.length;
-
-  const allAverage =
-    grades.reduce((sum, grade) => {
-      return sum + gradeToNumber(grade.value) * grade.weight;
-    }, 0) /
-    grades.reduce((sum, grade) => sum + grade.weight, 0);
-
-  document.getElementById("average").textContent = allAverage.toFixed(2);
-}
-
-function showGradeInfo(grade) {
-  const box = document.getElementById("gradeInfo");
-
-  box.innerHTML = `
-    <div class="panel info-box">
-      <b>Szczegóły oceny \({grade.value}</b><br>
-      Przedmiot: \){grade.subject}<br>
-      Nauczyciel: \({teachers[grade.subject] || "Brak danych"}<br>
-      Rodzaj pracy: \){grade.type}<br>
-      Data: \({grade.date}<br>
-      Waga: \){grade.weight}
-    </div>
-  `;
-
-  box.scrollIntoView({
-    behavior:"smooth",
-    block:"center"
-  });
-}
-
-function renderTeachers() {
-  const table = document.getElementById("teachersTable");
-
-  Object.entries(teachers).forEach(([subject, teacher]) => {
-    const row = document.createElement("tr");
-
     row.innerHTML = `
       <td>\({subject}</td>
-      <td>\){teacher}</td>
+      <td>\){teachers[subject] || "Nie podano"}</td>
     `;
 
     table.appendChild(row);
@@ -715,6 +677,7 @@ function renderTeachers() {
 
 function renderSchedule() {
   const box = document.getElementById("scheduleBox");
+  box.innerHTML = "";
 
   Object.entries(schedule).forEach(([day, lessons]) => {
     const dayBox = document.createElement("div");
@@ -723,19 +686,41 @@ function renderSchedule() {
     dayBox.innerHTML = `<h3>\({day}</h3>`;
 
     lessons.forEach(([time, subject]) => {
-      const lesson = document.createElement("div");
-      lesson.className = "lesson";
-
-      lesson.innerHTML = `
-        <time>\){time}</time>
-        ${subject}
+      dayBox.innerHTML += `
+        <div class="lesson">
+          <time>\){time}</time>
+          ${subject}
+        </div>
       `;
-
-      dayBox.appendChild(lesson);
     });
 
     box.appendChild(dayBox);
   });
+}
+
+function updateStatistics() {
+  let totalGrades = 0;
+  let weightedSum = 0;
+  let totalWeight = 0;
+
+  Object.values(grades).forEach(subjectGrades => {
+    totalGrades += subjectGrades.length;
+
+    subjectGrades.forEach(grade => {
+      const weight = gradeWeights[grade.type.toLowerCase()] || 1;
+
+      weightedSum += numericGrade(grade.value) * weight;
+      totalWeight += weight;
+    });
+  });
+
+  const average = totalWeight > 0
+    ? weightedSum / totalWeight
+    : null;
+
+  document.getElementById("subjectCount").textContent = subjects.length;
+  document.getElementById("gradeCount").textContent = totalGrades;
+  document.getElementById("mainAverage").textContent = formatAverage(average);
 }
 
 document.querySelectorAll(".tab").forEach(button => {
@@ -749,15 +734,20 @@ document.querySelectorAll(".tab").forEach(button => {
     });
 
     button.classList.add("active");
-    document
-      .getElementById(button.dataset.tab)
-      .classList.add("active");
+    document.getElementById(button.dataset.tab).classList.add("active");
   });
+});
+
+document.getElementById("gradeModal").addEventListener("click", event => {
+  if (event.target.id === "gradeModal") {
+    closeModal();
+  }
 });
 
 renderGrades();
 renderTeachers();
 renderSchedule();
+updateStatistics();
 </script>
 
 </body>
