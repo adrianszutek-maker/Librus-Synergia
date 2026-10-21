@@ -3,46 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>E-dziennik 4F</title>
+<title>Elektroniczny Dziennik 4F</title>
 
 <style>
 :root {
-  --blue:#163b68;
-  --blue2:#245b98;
-  --light:#f1f5f9;
-  --white:#fff;
-  --text:#172033;
-  --muted:#64748b;
-  --green:#159447;
-  --red:#d62828;
-  --orange:#e68a00;
-  --border:#dbe3ed;
+  --bg:#101722;
+  --bg2:#172333;
+  --panel:#1d2b3d;
+  --panel2:#23354a;
+  --text:#edf4fc;
+  --muted:#9eafc2;
+  --blue:#3d8bea;
+  --blue-dark:#1d5da5;
+  --green:#20ad62;
+  --red:#dc4141;
+  --orange:#d99124;
+  --border:#33475e;
+  --shadow:#0008;
 }
 
-* { box-sizing:border-box; }
+* {
+  box-sizing:border-box;
+}
 
 body {
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
-  background:var(--light);
+  background:var(--bg);
   color:var(--text);
 }
 
 header {
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
   padding:22px;
-  box-shadow:0 2px 8px #0003;
+  background:linear-gradient(135deg,#102d50,#1f5d9d);
+  box-shadow:0 2px 10px var(--shadow);
 }
 
 header h1 {
-  margin:0 0 6px;
-  font-size:24px;
+  margin:0 0 8px;
+  font-size:25px;
 }
 
 header p {
-  margin:0;
-  opacity:.9;
+  margin:4px 0;
+  color:#dbeafe;
+}
+
+.student {
+  font-weight:bold;
+  font-size:16px;
 }
 
 nav {
@@ -50,17 +59,18 @@ nav {
   flex-wrap:wrap;
   gap:8px;
   padding:12px;
-  background:white;
+  background:var(--bg2);
   border-bottom:1px solid var(--border);
   position:sticky;
   top:0;
   z-index:5;
+  box-shadow:0 2px 8px #0005;
 }
 
 nav button {
   border:0;
-  background:#e7eef7;
-  color:var(--blue);
+  background:#263a51;
+  color:#dcecff;
   padding:10px 13px;
   border-radius:8px;
   cursor:pointer;
@@ -79,8 +89,17 @@ main {
   padding:20px;
 }
 
-.section { display:none; }
-.section.active { display:block; }
+.section {
+  display:none;
+}
+
+.section.active {
+  display:block;
+}
+
+h2, h3 {
+  color:#8fc4ff;
+}
 
 .cards {
   display:grid;
@@ -89,99 +108,91 @@ main {
   margin-bottom:20px;
 }
 
-.card, .panel {
-  background:white;
+.card,
+.panel {
+  background:var(--panel);
   border:1px solid var(--border);
   border-radius:12px;
   padding:18px;
-  box-shadow:0 2px 5px #0000000b;
+  box-shadow:0 2px 8px #0004;
 }
 
 .card strong {
   display:block;
   font-size:28px;
-  color:var(--blue);
+  color:#8fc4ff;
   margin-top:7px;
 }
 
-.card small, .muted {
+.card small,
+.muted {
   color:var(--muted);
-}
-
-h2, h3 {
-  color:var(--blue);
 }
 
 table {
   width:100%;
   border-collapse:collapse;
-  background:white;
-  border-radius:10px;
   overflow:hidden;
 }
 
-th, td {
-  padding:11px;
+th,
+td {
+  padding:12px 10px;
   border-bottom:1px solid var(--border);
   text-align:left;
-  vertical-align:top;
+  vertical-align:middle;
 }
 
 th {
-  background:#e9f0f8;
-  color:var(--blue);
+  color:#a8d0ff;
+  background:var(--panel2);
 }
 
 tr:hover td {
-  background:#f8fbff;
+  background:#263a50;
 }
 
-.badge {
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:6px;
-  font-weight:bold;
-  color:white;
-  margin:2px;
-}
-
-.grade { background:var(--blue2); }
-.present { background:var(--green); }
-.absent { background:var(--red); }
-.late { background:var(--orange); }
-
-button, input, select, textarea {
-  font:inherit;
-}
-
-.action {
-  border:0;
-  border-radius:7px;
-  padding:8px 11px;
-  cursor:pointer;
-  background:var(--blue);
-  color:white;
-}
-
-.action.red { background:var(--red); }
-.action.green { background:var(--green); }
-
-.form {
+.grade-list {
   display:flex;
   flex-wrap:wrap;
-  gap:8px;
-  margin:12px 0;
+  gap:7px;
 }
 
-.form input, .form select, .form textarea {
-  padding:9px;
-  border:1px solid var(--border);
+.grade-box {
+  width:38px;
+  height:38px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:0;
   border-radius:7px;
+  background:var(--blue-dark);
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:15px;
 }
 
-.form textarea {
-  min-width:260px;
-  min-height:80px;
+.grade-box:hover {
+  background:#58a1f5;
+  transform:scale(1.05);
+}
+
+.average {
+  color:#8fc4ff;
+  font-size:17px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.info-box {
+  margin-top:10px;
+  padding:12px;
+  border-left:4px solid var(--blue);
+  background:#16263a;
+  color:#dcecff;
+  border-radius:6px;
+  line-height:1.5;
 }
 
 .schedule {
@@ -190,11 +201,22 @@ button, input, select, textarea {
   gap:15px;
 }
 
+.day {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:15px;
+}
+
+.day h3 {
+  margin-top:0;
+}
+
 .lesson {
   padding:10px;
-  border-left:4px solid var(--blue2);
-  background:#f8fbff;
-  margin:7px 0;
+  border-left:4px solid var(--blue);
+  background:#23354a;
+  margin:8px 0;
   border-radius:5px;
 }
 
@@ -205,16 +227,9 @@ button, input, select, textarea {
   margin-bottom:4px;
 }
 
-.message, .remark {
-  padding:13px;
-  border:1px solid var(--border);
-  border-radius:8px;
-  margin:9px 0;
-  background:#fbfdff;
-}
-
-.message b, .remark b {
-  color:var(--blue);
+.empty {
+  color:var(--muted);
+  font-style:italic;
 }
 
 footer {
@@ -225,9 +240,32 @@ footer {
 }
 
 @media(max-width:600px) {
-  main { padding:12px; }
-  th, td { padding:8px 5px; font-size:13px; }
-  header h1 { font-size:20px; }
+  main {
+    padding:12px;
+  }
+
+  header {
+    padding:18px;
+  }
+
+  header h1 {
+    font-size:21px;
+  }
+
+  th,
+  td {
+    padding:9px 5px;
+    font-size:12px;
+  }
+
+  .grade-box {
+    width:34px;
+    height:34px;
+  }
+
+  .average {
+    font-size:14px;
+  }
 }
 </style>
 </head>
@@ -235,8 +273,9 @@ footer {
 <body>
 
 <header>
-  <h1>Fikcyjny e-dziennik szkolny</h1>
+  <h1>Elektroniczny Dziennik</h1>
   <p>Zespół Szkół Budowlano-Geodezyjnych · Klasa 4F</p>
+  <p class="student">Uczeń: Adrian Szutko</p>
 </header>
 
 <nav>
@@ -257,14 +296,14 @@ footer {
   <div class="cards">
     <div class="card">
       Frekwencja
-      <strong id="attendancePercent">100%</strong>
+      <strong>100%</strong>
       <small>obecności</small>
     </div>
 
     <div class="card">
       Średnia ocen
       <strong id="average">-</strong>
-      <small>na podstawie wpisanych ocen</small>
+      <small>średnia ważona</small>
     </div>
 
     <div class="card">
@@ -274,19 +313,17 @@ footer {
     </div>
 
     <div class="card">
-      Wiadomości
-      <strong id="messageCount">0</strong>
-      <small>zapisanych lokalnie</small>
+      Oceny
+      <strong id="gradeCount">0</strong>
+      <small>wpisanych ocen</small>
     </div>
   </div>
 
   <div class="panel">
-    <h3>Informacja</h3>
-    <p>
-      To prywatna, fikcyjna symulacja e-dziennika. Wszystkie dane są zapisywane
-      wyłącznie na tym urządzeniu w pamięci przeglądarki.
-    </p>
-    <button class="action red" onclick="clearData()">Usuń wszystkie zapisane dane</button>
+    <h3>Informacje o uczniu</h3>
+    <p><b>Imię i nazwisko:</b> Adrian Szutko</p>
+    <p><b>Klasa:</b> 4F</p>
+    <p><b>Szkoła:</b> Zespół Szkół Budowlano-Geodezyjnych</p>
   </div>
 </section>
 
@@ -294,13 +331,18 @@ footer {
   <h2>Oceny</h2>
 
   <div class="panel">
-    <div class="form">
-      <select id="gradeSubject"></select>
-      <input id="gradeValue" placeholder="Ocena, np. 4+" maxlength="3">
-      <input id="gradeType" placeholder="Rodzaj, np. sprawdzian">
-      <button class="action green" onclick="addGrade()">Dodaj ocenę</button>
+    <p class="muted">
+      Kliknij kwadrat z oceną, aby zobaczyć nauczyciela, rodzaj pracy,
+      datę oraz wagę oceny.
+    </p>
+
+    <div class="info-box">
+      Wagi: sprawdzian - 4, kartkówka - 2, odpowiedź ustna - 1,
+      praca na lekcji - 1.
     </div>
   </div>
+
+  <br>
 
   <div class="panel">
     <table>
@@ -308,29 +350,18 @@ footer {
         <tr>
           <th>Przedmiot</th>
           <th>Oceny</th>
-          <th>Średnia</th>
+          <th>Średnia ważona</th>
         </tr>
       </thead>
       <tbody id="gradesTable"></tbody>
     </table>
   </div>
+
+  <div id="gradeInfo"></div>
 </section>
 
 <section id="attendance" class="section">
   <h2>Frekwencja</h2>
-
-  <div class="panel">
-    <div class="form">
-      <input type="date" id="attendanceDate">
-      <select id="attendanceType">
-        <option value="present">Obecność</option>
-        <option value="absent">Nieobecność</option>
-        <option value="late">Spóźnienie</option>
-      </select>
-      <input id="attendanceSubject" placeholder="Przedmiot">
-      <button class="action green" onclick="addAttendance()">Dodaj wpis</button>
-    </div>
-  </div>
 
   <div class="panel">
     <table>
@@ -339,10 +370,13 @@ footer {
           <th>Data</th>
           <th>Przedmiot</th>
           <th>Status</th>
-          <th>Akcja</th>
         </tr>
       </thead>
-      <tbody id="attendanceTable"></tbody>
+      <tbody>
+        <tr>
+          <td colspan="3" class="empty">Brak wpisów dotyczących nieobecności.</td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </section>
@@ -354,6 +388,7 @@ footer {
 
 <section id="teachers" class="section">
   <h2>Nauczyciele</h2>
+
   <div class="panel">
     <table>
       <thead>
@@ -371,59 +406,25 @@ footer {
   <h2>Uwagi</h2>
 
   <div class="panel">
-    <div class="form">
-      <select id="remarkType">
-        <option value="Pozytywna">Pozytywna</option>
-        <option value="Negatywna">Negatywna</option>
-      </select>
-      <input id="remarkTitle" placeholder="Tytuł uwagi">
-      <textarea id="remarkText" placeholder="Treść uwagi"></textarea>
-      <button class="action green" onclick="addRemark()">Dodaj uwagę</button>
-    </div>
+    <p class="empty">Brak uwag.</p>
   </div>
-
-  <div id="remarksBox"></div>
 </section>
 
 <section id="messages" class="section">
   <h2>Wiadomości</h2>
 
   <div class="panel">
-    <div class="form">
-      <input id="messageSender" placeholder="Nadawca">
-      <input id="messageTitle" placeholder="Temat wiadomości">
-      <textarea id="messageText" placeholder="Treść wiadomości"></textarea>
-      <button class="action green" onclick="addMessage()">Dodaj wiadomość</button>
-    </div>
+    <p class="empty">Brak wiadomości.</p>
   </div>
-
-  <div id="messagesBox"></div>
 </section>
 
 </main>
 
 <footer>
-  Fikcyjny e-dziennik · Dane lokalne · Klasa 4F
+  Elektroniczny Dziennik · Klasa 4F · Adrian Szutko
 </footer>
 
 <script>
-const subjects = [
-  "Język Polski",
-  "Matematyka",
-  "Język Angielski",
-  "Język Angielski w Budownictwie",
-  "Fizyka",
-  "Fizyka Techniczna",
-  "Geografia",
-  "Historia",
-  "Język Niemiecki",
-  "Kształtowanie Kompetencji Zawodowych",
-  "Obsługa Systemów Energetyki Odnawialnej",
-  "Systemy Energii Odnawialnej",
-  "Wychowanie Fizyczne",
-  "Umiejętności Rynkowe - Przygotowanie do egzaminu na uprawnienia elektryczne G1"
-];
-
 const teachers = {
   "Matematyka":"Joanna Wasilewska",
   "Fizyka":"Paweł Klim",
@@ -431,12 +432,122 @@ const teachers = {
   "Język Angielski":"Anna Mróz",
   "Język Angielski w Budownictwie":"Anna Mróz",
   "Język Polski":"Dorota Puciłowska",
+  "Geografia":"Marek Zieliński",
+  "Historia":"Katarzyna Wójcik",
   "Systemy Energii Odnawialnej":"Beata Polonis",
   "Obsługa Systemów Energetyki Odnawialnej":"Beata Polonis",
   "Kształtowanie Kompetencji Zawodowych":"Beata Polonis",
   "Wychowanie Fizyczne":"Zbigniew Kulikowski",
-  "Umiejętności Rynkowe - Przygotowanie do egzaminu na uprawnienia elektryczne G1":"Tomasz Rolak"
+  "Umiejętności Rynkowe":"Tomasz Rolak"
 };
+
+const grades = [
+  {
+    subject:"Język Polski",
+    value:"3",
+    type:"Kartkówka",
+    date:"12.10.2026",
+    weight:2
+  },
+  {
+    subject:"Systemy Energii Odnawialnej",
+    value:"3",
+    type:"Kartkówka",
+    date:"21.09.2026",
+    weight:2
+  },
+  {
+    subject:"Systemy Energii Odnawialnej",
+    value:"3",
+    type:"Kartkówka",
+    date:"09.10.2026",
+    weight:2
+  },
+  {
+    subject:"Wychowanie Fizyczne",
+    value:"5",
+    type:"Sprawdzian",
+    date:"22.09.2026",
+    weight:4
+  },
+  {
+    subject:"Wychowanie Fizyczne",
+    value:"5-",
+    type:"Praca na lekcji",
+    date:"06.10.2026",
+    weight:1
+  },
+  {
+    subject:"Obsługa Systemów Energetyki Odnawialnej",
+    value:"3",
+    type:"Odpowiedź ustna",
+    date:"10.09.2026",
+    weight:1
+  },
+  {
+    subject:"Obsługa Systemów Energetyki Odnawialnej",
+    value:"4-",
+    type:"Kartkówka",
+    date:"17.09.2026",
+    weight:2
+  },
+  {
+    subject:"Język Angielski w Budownictwie",
+    value:"6",
+    type:"Kartkówka",
+    date:"25.09.2026",
+    weight:2
+  },
+  {
+    subject:"Język Angielski",
+    value:"4",
+    type:"Kartkówka",
+    date:"09.10.2026",
+    weight:2
+  },
+  {
+    subject:"Geografia",
+    value:"3",
+    type:"Sprawdzian",
+    date:"04.10.2026",
+    weight:4
+  },
+  {
+    subject:"Geografia",
+    value:"3",
+    type:"Kartkówka",
+    date:"27.09.2026",
+    weight:2
+  },
+  {
+    subject:"Fizyka Techniczna",
+    value:"4",
+    type:"Praca na lekcji",
+    date:"05.10.2026",
+    weight:1
+  },
+  {
+    subject:"Fizyka Techniczna",
+    value:"2",
+    type:"Praca na lekcji",
+    date:"12.10.2026",
+    weight:1
+  },
+  {
+    subject:"Fizyka",
+    value:"4",
+    type:"Kartkówka",
+    date:"29.09.2026",
+    weight:2
+  },
+  {
+    subject:"Fizyka",
+    value:"3",
+    type:"Praca na lekcji",
+    date:"30.09.2026",
+    weight:1
+  }
+];
 
 const schedule = {
   "Poniedziałek":[
@@ -467,252 +578,186 @@ const schedule = {
     ["13:35 - 14:20","Kształtowanie Kompetencji Zawodowych"]
   ],
   "Czwartek":[
-    ["08:00 - 08:45","Geografia"],
-    ["08:55 - 09:40","Obsługa Systemów Energetyki Odnawialnej"],
-    ["09:50 - 10:35","Obsługa Systemów Energetyki Odnawialnej"],
-    ["10:45 - 11:30","Obsługa Systemów Energetyki Odnawialnej"],
-    ["11:45 - 12:30","Obsługa Systemów Energetyki Odnawialnej"],
-    ["12:40 - 13:25","Obsługa Systemów Energetyki Odnawialnej"],
-    ["13:35 - 14:20","Obsługa Systemów Energetyki Odnawialnej"]
+    ["08:00 - 08:45","Język Angielski"],
+    ["08:55 - 09:40","Język Angielski"],
+    ["09:50 - 10:35","Geografia"],
+    ["10:45 - 11:30","Wychowanie Fizyczne"],
+    ["11:45 - 12:30","Fizyka Techniczna"]
   ],
   "Piątek":[
-    ["08:55 - 09:40","Wychowanie Fizyczne"],
-    ["09:50 - 10:35","Wychowanie Fizyczne"],
-    ["10:45 - 11:30","Matematyka"],
-    ["11:45 - 12:30","Język Angielski"],
-    ["12:40 - 13:25","Systemy Energii Odnawialnej"],
-    ["13:35 - 14:20","Język Polski"],
-    ["14:30 - 15:15","Język Angielski"]
+    ["08:00 - 08:45","Język Polski"],
+    ["08:55 - 09:40","Historia"],
+    ["09:50 - 10:35","Systemy Energii Odnawialnej"],
+    ["10:45 - 11:30","Obsługa Systemów Energetyki Odnawialnej"],
+    ["11:45 - 12:30","Obsługa Systemów Energetyki Odnawialnej"]
   ]
 };
 
-let data = JSON.parse(localStorage.getItem("edziennik4F")) || {
-  grades:[],
-  attendance:[],
-  remarks:[],
-  messages:[]
-};
+function gradeToNumber(value) {
+  if (value.endsWith("+")) {
+    return Number(value[0]) + 0.25;
+  }
 
-function save() {
-  localStorage.setItem("edziennik4F", JSON.stringify(data));
-  render();
+  if (value.endsWith("-")) {
+    return Number(value[0]) - 0.25;
+  }
+
+  return Number(value);
 }
 
-function fillSubjects() {
-  const select = document.getElementById("gradeSubject");
-  select.innerHTML = subjects.map(function(s) {
-    return "<option>" + s + "</option>";
-  }).join("");
-}
+function weightedAverage(subject) {
+  const subjectGrades = grades.filter(g => g.subject === subject);
 
-function addGrade() {
-  const subject = document.getElementById("gradeSubject").value;
-  const value = document.getElementById("gradeValue").value.trim();
-  const type = document.getElementById("gradeType").value.trim() || "Ocena";
+  if (subjectGrades.length === 0) {
+    return "-";
+  }
 
-  if (!value) return alert("Wpisz ocenę.");
+  let total = 0;
+  let weights = 0;
 
-  data.grades.push({subject: subject, value: value, type: type});
-  document.getElementById("gradeValue").value = "";
-  document.getElementById("gradeType").value = "";
-  save();
-}
+  subjectGrades.forEach(grade => {
+    total += gradeToNumber(grade.value) * grade.weight;
+    weights += grade.weight;
+  });
 
-function gradeNumber(value) {
-  const match = value.replace(",", ".").match(/[1-6]/);
-  return match ? Number(match[0]) : null;
-}
-
-function deleteGrade(index) {
-  data.grades.splice(index, 1);
-  save();
+  return (total / weights).toFixed(2);
 }
 
 function renderGrades() {
   const table = document.getElementById("gradesTable");
+  const subjects = [...new Set(grades.map(grade => grade.subject))];
 
-  table.innerHTML = subjects.map(function(subject) {
-    const list = data.grades.filter(function(g) { return g.subject === subject; });
-    const numbers = list.map(function(g) { return gradeNumber(g.value); }).filter(Boolean);
-    const avg = numbers.length
-      ? (numbers.reduce(function(a, b) { return a + b; }, 0) / numbers.length).toFixed(2)
-      : "-";
+  table.innerHTML = "";
 
-    const html = list.map(function(g) {
-      const index = data.grades.indexOf(g);
-      return '<span class="badge grade" title="' + g.type + '">' +
-        g.value + ' <button onclick="deleteGrade(' + index + ')" style="border:0;background:none;color:white;cursor:pointer">×</button></span>';
-    }).join("");
+  subjects.forEach(subject => {
+    const row = document.createElement("tr");
 
-    return "<tr><td>" + subject + "</td><td>" + (html || '<span class="muted">Brak ocen</span>') + "</td><td>" + avg + "</td></tr>";
-  }).join("");
+    const subjectCell = document.createElement("td");
+    subjectCell.textContent = subject;
+
+    const gradesCell = document.createElement("td");
+    const gradeList = document.createElement("div");
+    gradeList.className = "grade-list";
+
+    grades
+      .filter(grade => grade.subject === subject)
+      .forEach(grade => {
+        const button = document.createElement("button");
+        button.className = "grade-box";
+        button.textContent = grade.value;
+        button.title = "Kliknij, aby zobaczyć szczegóły";
+
+        button.addEventListener("click", () => {
+          showGradeInfo(grade);
+        });
+
+        gradeList.appendChild(button);
+      });
+
+    gradesCell.appendChild(gradeList);
+
+    const averageCell = document.createElement("td");
+    averageCell.className = "average";
+    averageCell.textContent = weightedAverage(subject);
+
+    row.appendChild(subjectCell);
+    row.appendChild(gradesCell);
+    row.appendChild(averageCell);
+    table.appendChild(row);
+  });
+
+  document.getElementById("subjectCount").textContent = subjects.length;
+  document.getElementById("gradeCount").textContent = grades.length;
+
+  const allAverage =
+    grades.reduce((sum, grade) => {
+      return sum + gradeToNumber(grade.value) * grade.weight;
+    }, 0) /
+    grades.reduce((sum, grade) => sum + grade.weight, 0);
+
+  document.getElementById("average").textContent = allAverage.toFixed(2);
 }
 
-function addAttendance() {
-  const date = document.getElementById("attendanceDate").value;
-  const type = document.getElementById("attendanceType").value;
-  const subject = document.getElementById("attendanceSubject").value.trim() || "Nie podano";
+function showGradeInfo(grade) {
+  const box = document.getElementById("gradeInfo");
 
-  if (!date) return alert("Wybierz datę.");
+  box.innerHTML = `
+    <div class="panel info-box">
+      <b>Szczegóły oceny \({grade.value}</b><br>
+      Przedmiot: \){grade.subject}<br>
+      Nauczyciel: \({teachers[grade.subject] || "Brak danych"}<br>
+      Rodzaj pracy: \){grade.type}<br>
+      Data: \({grade.date}<br>
+      Waga: \){grade.weight}
+    </div>
+  `;
 
-  data.attendance.push({date: date, type: type, subject: subject});
-  document.getElementById("attendanceSubject").value = "";
-  save();
-}
-
-function deleteAttendance(index) {
-  data.attendance.splice(index, 1);
-  save();
-}
-
-function renderAttendance() {
-  const names = {
-    present: "Obecność",
-    absent: "Nieobecność",
-    late: "Spóźnienie"
-  };
-
-  document.getElementById("attendanceTable").innerHTML =
-    data.attendance.map(function(a, i) {
-      return "<tr><td>" + a.date + "</td><td>" + a.subject + "</td><td><span class=\"badge " + a.type + "\">" + names[a.type] + "</span></td><td><button class=\"action red\" onclick=\"deleteAttendance(" + i + ")\">Usuń</button></td></tr>";
-    }).join("") || "<tr><td colspan=\"4\" class=\"muted\">Brak wpisów.</td></tr>";
-}
-
-function renderSchedule() {
-  document.getElementById("scheduleBox").innerHTML =
-    Object.entries(schedule).map(function(entry) {
-      const day = entry[0];
-      const lessons = entry[1];
-      const items = lessons.map(function(l) {
-        return "<div class=\"lesson\"><time>" + l[0] + "</time>" + l[1] + "</div>";
-      }).join("");
-      return "<div class=\"panel\"><h3>" + day + "</h3>" + items + "</div>";
-    }).join("");
+  box.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
 }
 
 function renderTeachers() {
-  document.getElementById("teachersTable").innerHTML =
-    subjects.map(function(subject) {
-      return "<tr><td>" + subject + "</td><td>" + (teachers[subject] || "Nie przypisano") + "</td></tr>";
-    }).join("");
-}
+  const table = document.getElementById("teachersTable");
 
-function addRemark() {
-  const type = document.getElementById("remarkType").value;
-  const title = document.getElementById("remarkTitle").value.trim();
-  const text = document.getElementById("remarkText").value.trim();
+  Object.entries(teachers).forEach(([subject, teacher]) => {
+    const row = document.createElement("tr");
 
-  if (!title || !text) return alert("Uzupełnij tytuł i treść uwagi.");
+    row.innerHTML = `
+      <td>\({subject}</td>
+      <td>\){teacher}</td>
+    `;
 
-  data.remarks.push({
-    type: type,
-    title: title,
-    text: text,
-    date: new Date().toLocaleDateString("pl-PL")
+    table.appendChild(row);
   });
-
-  document.getElementById("remarkTitle").value = "";
-  document.getElementById("remarkText").value = "";
-  save();
 }
 
-function deleteRemark(index) {
-  data.remarks.splice(index, 1);
-  save();
-}
+function renderSchedule() {
+  const box = document.getElementById("scheduleBox");
 
-function renderRemarks() {
-  document.getElementById("remarksBox").innerHTML =
-    data.remarks.map(function(r, i) {
-      return "<div class=\"remark\"><b>" + r.type + ": " + r.title + "</b><small class=\"muted\"> · " + r.date + "</small><p>" + r.text + "</p><button class=\"action red\" onclick=\"deleteRemark(" + i + ")\">Usuń</button></div>";
-    }).join("") || "<p class=\"muted\">Brak uwag.</p>";
-}
+  Object.entries(schedule).forEach(([day, lessons]) => {
+    const dayBox = document.createElement("div");
+    dayBox.className = "day";
 
-function addMessage() {
-  const sender = document.getElementById("messageSender").value.trim();
-  const title = document.getElementById("messageTitle").value.trim();
-  const text = document.getElementById("messageText").value.trim();
+    dayBox.innerHTML = `<h3>\({day}</h3>`;
 
-  if (!sender || !title || !text) return alert("Uzupełnij wszystkie pola.");
+    lessons.forEach(([time, subject]) => {
+      const lesson = document.createElement("div");
+      lesson.className = "lesson";
 
-  data.messages.push({
-    sender: sender,
-    title: title,
-    text: text,
-    date: new Date().toLocaleDateString("pl-PL")
+      lesson.innerHTML = `
+        <time>\){time}</time>
+        ${subject}
+      `;
+
+      dayBox.appendChild(lesson);
+    });
+
+    box.appendChild(dayBox);
   });
-
-  document.getElementById("messageSender").value = "";
-  document.getElementById("messageTitle").value = "";
-  document.getElementById("messageText").value = "";
-  save();
 }
 
-function deleteMessage(index) {
-  data.messages.splice(index, 1);
-  save();
-}
+document.querySelectorAll(".tab").forEach(button => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(tab => {
+      tab.classList.remove("active");
+    });
 
-function renderMessages() {
-  document.getElementById("messagesBox").innerHTML =
-    data.messages.map(function(m, i) {
-      return "<div class=\"message\"><b>" + m.title + "</b><small class=\"muted\"> · " + m.date + "</small><p><strong>Nadawca:</strong> " + m.sender + "</p><p>" + m.text + "</p><button class=\"action red\" onclick=\"deleteMessage(" + i + ")\">Usuń</button></div>";
-    }).join("") || "<p class=\"muted\">Brak wiadomości.</p>";
-}
-
-function renderDashboard() {
-  const numbers = data.grades
-    .map(function(g) { return gradeNumber(g.value); })
-    .filter(Boolean);
-
-  const average = numbers.length
-    ? (numbers.reduce(function(a, b) { return a + b; }, 0) / numbers.length).toFixed(2)
-    : "-";
-
-  const total = data.attendance.length;
-  const present = data.attendance.filter(function(a) { return a.type === "present"; }).length;
-  const percent = total ? Math.round((present / total) * 100) : 100;
-
-  document.getElementById("average").textContent = average;
-  document.getElementById("attendancePercent").textContent = percent + "%";
-  document.getElementById("subjectCount").textContent = subjects.length;
-  document.getElementById("messageCount").textContent = data.messages.length;
-}
-
-function render() {
-  renderGrades();
-  renderAttendance();
-  renderSchedule();
-  renderTeachers();
-  renderRemarks();
-  renderMessages();
-  renderDashboard();
-}
-
-function clearData() {
-  if (confirm("Czy na pewno usunąć wszystkie lokalne dane?")) {
-    data = {
-      grades:[],
-      attendance:[],
-      remarks:[],
-      messages:[]
-    };
-    save();
-  }
-}
-
-document.querySelectorAll(".tab").forEach(function(button) {
-  button.addEventListener("click", function() {
-    document.querySelectorAll(".tab").forEach(function(b) { b.classList.remove("active"); });
-    document.querySelectorAll(".section").forEach(function(s) { s.classList.remove("active"); });
+    document.querySelectorAll(".section").forEach(section => {
+      section.classList.remove("active");
+    });
 
     button.classList.add("active");
-    document.getElementById(button.dataset.tab).classList.add("active");
+    document
+      .getElementById(button.dataset.tab)
+      .classList.add("active");
   });
 });
 
-fillSubjects();
-render();
+renderGrades();
+renderTeachers();
+renderSchedule();
 </script>
 
 </body>
