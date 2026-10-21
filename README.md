@@ -457,52 +457,44 @@ const teachers = {
 };
 
 const gradeWeights = {
-  "sprawdzian":4,
-  "kartkówka":2,
-  "kartkowka":2,
-  "odpowiedź ustna":1,
-  "odpowiedz ustna":1,
-  "praca na lekcji":1
+  "sprawdzian": 4,
+  "kartkówka": 2,
+  "kartkowka": 2,
+  "odpowiedź ustna": 1,
+  "odpowiedz ustna": 1,
+  "praca na lekcji": 1
 };
 
 const grades = {
   "Język Polski": [
     {value:"3", type:"Kartkówka", date:"12.10.2026"}
   ],
-
   "Systemy Energii Odnawialnej": [
     {value:"3", type:"Kartkówka", date:"21.09.2026"},
     {value:"3", type:"Kartkówka", date:"09.10.2026"}
   ],
-
   "Wychowanie Fizyczne": [
     {value:"5", type:"Sprawdzian", date:"22.09.2026"},
     {value:"5-", type:"Praca na lekcji", date:"06.10.2026"}
   ],
-
   "Obsługa Systemów Energetyki Odnawialnej": [
     {value:"3", type:"Odpowiedź ustna", date:"10.09.2026"},
     {value:"4-", type:"Kartkówka", date:"17.09.2026"}
   ],
-
   "Język Angielski w Budownictwie": [
     {value:"6", type:"Kartkówka", date:"25.09.2026"}
   ],
-
   "Język Angielski": [
     {value:"4", type:"Kartkówka", date:"09.10.2026"}
   ],
-
   "Geografia": [
     {value:"3", type:"Sprawdzian", date:"04.10.2026"},
     {value:"3", type:"Kartkówka", date:"27.09.2026"}
   ],
-
   "Fizyka Techniczna": [
     {value:"4", type:"Praca na lekcji", date:"05.10.2026"},
     {value:"2", type:"Praca na lekcji", date:"12.10.2026"}
   ],
-
   "Fizyka": [
     {value:"4", type:"Kartkówka", date:"29.09.2026"},
     {value:"3", type:"Praca na lekcji", date:"30.09.2026"}
@@ -521,7 +513,6 @@ const schedule = {
     ["14:30 - 15:15","Umiejętności Rynkowe"],
     ["15:20 - 16:05","Historia"]
   ],
-
   "Wtorek":[
     ["09:50 - 10:35","Systemy Energii Odnawialnej"],
     ["10:45 - 11:30","Systemy Energii Odnawialnej"],
@@ -530,7 +521,6 @@ const schedule = {
     ["13:35 - 14:20","Wychowanie Fizyczne"],
     ["14:30 - 15:15","Język Angielski"]
   ],
-
   "Środa":[
     ["08:55 - 09:40","Fizyka"],
     ["09:50 - 10:35","Język Angielski w Budownictwie"],
@@ -539,7 +529,6 @@ const schedule = {
     ["12:40 - 13:25","Kształtowanie Kompetencji Zawodowych"],
     ["13:35 - 14:20","Kształtowanie Kompetencji Zawodowych"]
   ],
-
   "Czwartek":[
     ["08:00 - 08:45","Język Polski"],
     ["08:55 - 09:40","Język Polski"],
@@ -548,7 +537,6 @@ const schedule = {
     ["11:45 - 12:30","Wychowanie Fizyczne"],
     ["12:40 - 13:25","Systemy Energii Odnawialnej"]
   ],
-
   "Piątek":[
     ["08:00 - 08:45","Geografia"],
     ["08:55 - 09:40","Matematyka"],
@@ -558,45 +546,32 @@ const schedule = {
   ]
 };
 
-function numericGrade(value) {
-  if (value.endsWith("-")) {
-    return parseFloat(value) - 0.25;
-  }
-
-  if (value.endsWith("+")) {
-    return parseFloat(value) + 0.25;
-  }
-
-  return parseFloat(value);
+function numericGrade(val) {
+  if (val.endsWith("-")) return parseFloat(val) - 0.25;
+  if (val.endsWith("+")) return parseFloat(val) + 0.25;
+  return parseFloat(val);
 }
 
 function gradeAverage(subject) {
-  const subjectGrades = grades[subject] || [];
-
-  if (subjectGrades.length === 0) {
-    return null;
-  }
+  const list = grades[subject] || [];
+  if (list.length === 0) return null;
 
   let weightedSum = 0;
   let totalWeight = 0;
 
-  subjectGrades.forEach(grade => {
-    const type = grade.type.toLowerCase();
-    const weight = gradeWeights[type] || 1;
-
-    weightedSum += numericGrade(grade.value) * weight;
+  list.forEach(item => {
+    const key = item.type.toLowerCase();
+    const weight = gradeWeights[key] || 1;
+    weightedSum += numericGrade(item.value) * weight;
     totalWeight += weight;
   });
 
   return weightedSum / totalWeight;
 }
 
-function formatAverage(value) {
-  if (value === null) {
-    return "Brak ocen";
-  }
-
-  return value.toFixed(2).replace(".", ",");
+function formatAverage(val) {
+  if (val === null) return "Brak ocen";
+  return val.toFixed(2).replace(".", ",");
 }
 
 function renderGrades() {
@@ -605,52 +580,52 @@ function renderGrades() {
 
   subjects.forEach(subject => {
     const row = document.createElement("tr");
-    const subjectGrades = grades[subject] || [];
+    const subGrades = grades[subject] || [];
 
+    const cellSubject = document.createElement("td");
+    cellSubject.textContent = subject;
+
+    const cellGrades = document.createElement("td");
     const gradeContainer = document.createElement("div");
     gradeContainer.className = "grades";
 
-    if (subjectGrades.length === 0) {
+    if (subGrades.length === 0) {
       gradeContainer.innerHTML = '<span class="no-grades">Brak ocen</span>';
     } else {
-      subjectGrades.forEach(grade => {
-        const button = document.createElement("button");
-        button.className = "grade";
-        button.textContent = grade.value;
-
-        button.addEventListener("click", () => {
-          showGradeDetails(subject, grade);
-        });
-
-        gradeContainer.appendChild(button);
+      subGrades.forEach(gradeItem => {
+        const btn = document.createElement("button");
+        btn.className = "grade";
+        btn.textContent = gradeItem.value;
+        btn.onclick = function() {
+          showGradeDetails(subject, gradeItem);
+        };
+        gradeContainer.appendChild(btn);
       });
     }
+    cellGrades.appendChild(gradeContainer);
 
-    const average = gradeAverage(subject);
+    const cellAvg = document.createElement("td");
+    cellAvg.className = "average";
+    cellAvg.textContent = formatAverage(gradeAverage(subject));
 
-    row.innerHTML = `
-      <td>\({subject}</td>
-      <td></td>
-      <td class="average">\){formatAverage(average)}</td>
-    `;
-
-    row.children[1].appendChild(gradeContainer);
+    row.appendChild(cellSubject);
+    row.appendChild(cellGrades);
+    row.appendChild(cellAvg);
     table.appendChild(row);
   });
 }
 
-function showGradeDetails(subject, grade) {
+function showGradeDetails(subject, gradeItem) {
   const teacher = teachers[subject] || "Nie podano";
-  const weight = gradeWeights[grade.type.toLowerCase()] || 1;
+  const weight = gradeWeights[gradeItem.type.toLowerCase()] || 1;
 
-  document.getElementById("modalDetails").innerHTML = `
-    <div class="modal-row"><b>Przedmiot:</b><br>\({subject}</div>
-    <div class="modal-row"><b>Ocena:</b><br>\){grade.value}</div>
-    <div class="modal-row"><b>Nauczyciel:</b><br>\({teacher}</div>
-    <div class="modal-row"><b>Rodzaj pracy:</b><br>\){grade.type}</div>
-    <div class="modal-row"><b>Data:</b><br>\({grade.date}</div>
-    <div class="modal-row"><b>Waga:</b><br>\){weight}</div>
-  `;
+  document.getElementById("modalDetails").innerHTML =
+    '<div class="modal-row"><b>Przedmiot:</b><br>' + subject + '</div>' +
+    '<div class="modal-row"><b>Ocena:</b><br>' + gradeItem.value + '</div>' +
+    '<div class="modal-row"><b>Nauczyciel:</b><br>' + teacher + '</div>' +
+    '<div class="modal-row"><b>Rodzaj pracy:</b><br>' + gradeItem.type + '</div>' +
+    '<div class="modal-row"><b>Data:</b><br>' + gradeItem.date + '</div>' +
+    '<div class="modal-row"><b>Waga:</b><br>' + weight + '</div>';
 
   document.getElementById("gradeModal").classList.add("show");
 }
@@ -665,12 +640,14 @@ function renderTeachers() {
 
   subjects.forEach(subject => {
     const row = document.createElement("tr");
+    const tdSub = document.createElement("td");
+    tdSub.textContent = subject;
 
-    row.innerHTML = `
-      <td>\({subject}</td>
-      <td>\){teachers[subject] || "Nie podano"}</td>
-    `;
+    const tdTeacher = document.createElement("td");
+    tdTeacher.textContent = teachers[subject] || "Nie podano";
 
+    row.appendChild(tdSub);
+    row.appendChild(tdTeacher);
     table.appendChild(row);
   });
 }
@@ -683,15 +660,20 @@ function renderSchedule() {
     const dayBox = document.createElement("div");
     dayBox.className = "day";
 
-    dayBox.innerHTML = `<h3>\({day}</h3>`;
+    const h3 = document.createElement("h3");
+    h3.textContent = day;
+    dayBox.appendChild(h3);
 
-    lessons.forEach(([time, subject]) => {
-      dayBox.innerHTML += `
-        <div class="lesson">
-          <time>\){time}</time>
-          ${subject}
-        </div>
-      `;
+    lessons.forEach(([time, subjectName]) => {
+      const lessonDiv = document.createElement("div");
+      lessonDiv.className = "lesson";
+
+      const timeEl = document.createElement("time");
+      timeEl.textContent = time;
+
+      lessonDiv.appendChild(timeEl);
+      lessonDiv.appendChild(document.createTextNode(subjectName));
+      dayBox.appendChild(lessonDiv);
     });
 
     box.appendChild(dayBox);
@@ -703,52 +685,5 @@ function updateStatistics() {
   let weightedSum = 0;
   let totalWeight = 0;
 
-  Object.values(grades).forEach(subjectGrades => {
-    totalGrades += subjectGrades.length;
-
-    subjectGrades.forEach(grade => {
-      const weight = gradeWeights[grade.type.toLowerCase()] || 1;
-
-      weightedSum += numericGrade(grade.value) * weight;
-      totalWeight += weight;
-    });
-  });
-
-  const average = totalWeight > 0
-    ? weightedSum / totalWeight
-    : null;
-
-  document.getElementById("subjectCount").textContent = subjects.length;
-  document.getElementById("gradeCount").textContent = totalGrades;
-  document.getElementById("mainAverage").textContent = formatAverage(average);
-}
-
-document.querySelectorAll(".tab").forEach(button => {
-  button.addEventListener("click", () => {
-    document.querySelectorAll(".tab").forEach(tab => {
-      tab.classList.remove("active");
-    });
-
-    document.querySelectorAll(".section").forEach(section => {
-      section.classList.remove("active");
-    });
-
-    button.classList.add("active");
-    document.getElementById(button.dataset.tab).classList.add("active");
-  });
-});
-
-document.getElementById("gradeModal").addEventListener("click", event => {
-  if (event.target.id === "gradeModal") {
-    closeModal();
-  }
-});
-
-renderGrades();
-renderTeachers();
-renderSchedule();
-updateStatistics();
-</script>
-
-</body>
-</html>
+  Object.values(grades).forEach(subGrades => {
+    totalGrades += subGrades
