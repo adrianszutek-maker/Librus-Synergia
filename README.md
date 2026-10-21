@@ -193,8 +193,7 @@ h2 {
   background: var(--purple);
 }
 
-.no-grades,
-.muted {
+.no-grades {
   color: var(--muted);
   font-size: 13px;
   font-style: italic;
@@ -357,11 +356,6 @@ footer {
       <span>Uczeń</span>
       <strong>4F</strong>
     </div>
-  </div>
-
-  <div class="panel">
-    <h2>Najbliższe zajęcia</h2>
-    <div id="nextLessons"></div>
   </div>
 </section>
 
@@ -727,29 +721,6 @@ function renderSchedule() {
   });
 }
 
-function renderNextLessons() {
-  const container = document.getElementById("nextLessons");
-  container.innerHTML = "";
-
-  const lessons = lessonSchedule["Poniedziałek"].slice(0, 3);
-
-  lessons.forEach(([time, subject]) => {
-    const lesson = document.createElement("div");
-    lesson.className = "lesson";
-
-    const timeBox = document.createElement("span");
-    timeBox.className = "time";
-    timeBox.textContent = time;
-
-    const subjectBox = document.createElement("span");
-    subjectBox.textContent = subject;
-
-    lesson.appendChild(timeBox);
-    lesson.appendChild(subjectBox);
-    container.appendChild(lesson);
-  });
-}
-
 function renderTeachers() {
   const container = document.getElementById("teachersContainer");
   container.innerHTML = "";
@@ -866,7 +837,6 @@ function showTab(id, button) {
 
 renderGrades();
 renderSchedule();
-renderNextLessons();
 renderTeachers();
 renderAttendance();
 </script>
