@@ -418,14 +418,6 @@ footer {
 
   <div class="panel">
     <div class="info-item">
-      <b>Dorota Puciłowska - przygotowanie do wypracowania</b>
-      <span>
-        Przypominam o powtórzeniu motywów literackich z epoki Młodej Polski
-        przed piątkową pracą klasową.
-      </span>
-    </div>
-
-    <div class="info-item">
       <b>Tomasz Rolak - materiały na uprawnienia G1</b>
       <span>
         Zestaw pytań egzaminacyjnych z ochrony przeciwporażeniowej
@@ -478,9 +470,9 @@ const teachers = {
   "Język Angielski w Budownictwie": "Anna Mróz",
   "Fizyka": "Paweł Klim",
   "Fizyka Techniczna": "Paweł Klim",
-  "Geografia": "Nie podano",
-  "Historia": "Nie podano",
-  "Język Niemiecki": "Nie podano",
+  "Geografia": "Wiesława Kolosa",
+  "Historia": "Robert Jan Peciak",
+  "Język Niemiecki": "Dorota Cyrulik",
   "Kształtowanie Kompetencji Zawodowych": "Beata Polonis",
   "Obsługa Systemów Energetyki Odnawialnej": "Beata Polonis",
   "Systemy Energii Odnawialnej": "Beata Polonis",
@@ -792,11 +784,6 @@ function renderAttendance() {
 
   container.innerHTML = "";
 
-  /*
-    Zakres frekwencji:
-    od 02.09.2026 do 21.10.2026.
-    Wszystkie lekcje są oznaczone jako obecność.
-  */
   const startDate = new Date(2026, 8, 2);
   const endDate = new Date(2026, 9, 21);
 
