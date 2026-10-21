@@ -7,296 +7,314 @@
 
 <style>
 :root {
-  --blue:#163b68;
-  --blue2:#245b98;
-  --light:#f1f5f9;
-  --white:#ffffff;
-  --text:#172033;
-  --muted:#64748b;
-  --border:#dbe3ed;
-  --green:#159447;
-  --orange:#e68a00;
-  --red:#d62828;
+  --bg: #0d1421;
+  --panel: #172235;
+  --panel-light: #1e2d46;
+  --border: #2b3b57;
+  --text: #f1f5f9;
+  --muted: #9aa9bd;
+  --blue: #2563eb;
+  --red: #dc3545;
+  --orange: #e89216;
+  --green: #159447;
+  --purple: #7655c9;
 }
 
 * {
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 body {
-  margin:0;
-  font-family:Arial, Helvetica, sans-serif;
-  background:var(--light);
-  color:var(--text);
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
-  background:linear-gradient(135deg,var(--blue),var(--blue2));
-  color:white;
-  padding:22px;
-  box-shadow:0 2px 8px #0003;
+  padding: 18px;
+  background: #14233a;
+  border-bottom: 1px solid var(--border);
 }
 
-header h1 {
-  margin:0 0 8px;
-  font-size:25px;
-}
-
-header p {
-  margin:4px 0;
-  opacity:.95;
+.header-title {
+  font-size: 21px;
+  font-weight: bold;
 }
 
 .student {
-  font-weight:bold;
-  font-size:15px;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
 }
 
 nav {
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  padding:12px;
-  background:white;
-  border-bottom:1px solid var(--border);
-  position:sticky;
-  top:0;
-  z-index:5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px;
+  background: #111b2c;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 5;
 }
 
 nav button {
-  border:0;
-  background:#e7eef7;
-  color:var(--blue);
-  padding:10px 13px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--panel);
+  color: var(--muted);
+  font-weight: bold;
+  cursor: pointer;
 }
 
 nav button.active,
 nav button:hover {
-  background:var(--blue);
-  color:white;
+  background: var(--blue);
+  color: white;
+  border-color: var(--blue);
 }
 
 main {
-  max-width:1200px;
-  margin:auto;
-  padding:20px;
+  max-width: 950px;
+  margin: auto;
+  padding: 18px;
 }
 
 .section {
-  display:none;
+  display: none;
 }
 
 .section.active {
-  display:block;
+  display: block;
 }
 
-.cards {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-  gap:14px;
-  margin-bottom:20px;
+h2 {
+  margin: 0 0 15px;
+  font-size: 21px;
 }
 
-.card,
-.panel {
-  background:white;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:18px;
-  box-shadow:0 2px 5px #0000000b;
+.panel,
+.stat-card,
+.day-card {
+  margin-bottom: 15px;
+  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
 }
 
-.card strong {
-  display:block;
-  font-size:28px;
-  color:var(--blue);
-  margin-top:7px;
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
-.card small,
-.muted {
-  color:var(--muted);
+.stat-card span {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
 }
 
-h2,
-h3 {
-  color:var(--blue);
+.stat-card strong {
+  display: block;
+  margin-top: 6px;
+  color: white;
+  font-size: 25px;
 }
 
-table {
-  width:100%;
-  border-collapse:collapse;
-  background:white;
-  border-radius:10px;
-  overflow:hidden;
+.subject-row {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
 }
 
-th,
-td {
-  padding:11px;
-  border-bottom:1px solid var(--border);
-  text-align:left;
-  vertical-align:middle;
+.subject-row:last-child {
+  border-bottom: 0;
 }
 
-th {
-  background:#e9f0f8;
-  color:var(--blue);
+.subject-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
 }
 
-tr:hover td {
-  background:#f8fbff;
-}
-
-.grades {
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
-}
-
-.grade {
-  width:35px;
-  height:35px;
-  border:0;
-  border-radius:7px;
-  background:var(--blue2);
-  color:white;
-  font-weight:bold;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.grade:hover {
-  background:var(--green);
-  transform:scale(1.08);
-}
-
-.no-grades {
-  color:var(--muted);
-  font-style:italic;
+.subject-name {
+  font-weight: bold;
 }
 
 .average {
-  font-weight:bold;
-  color:var(--blue);
+  color: #62b5ff;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
-.schedule {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-  gap:15px;
+.grades {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
 }
 
-.day {
-  background:white;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:15px;
+.grade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #ffffff55;
+  border-radius: 7px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.15s;
 }
 
-.day h3 {
-  margin-top:0;
-  border-bottom:1px solid var(--border);
-  padding-bottom:8px;
+.grade:hover {
+  transform: scale(1.08);
+}
+
+.sprawdzian {
+  background: var(--red);
+}
+
+.kartkowka {
+  background: var(--orange);
+}
+
+.odpowiedz {
+  background: var(--green);
+}
+
+.praca {
+  background: var(--purple);
+}
+
+.no-grades,
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
 }
 
 .lesson {
-  padding:10px;
-  border-left:4px solid var(--blue2);
-  background:#f8fbff;
-  margin:7px 0;
-  border-radius:5px;
+  display: flex;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
 }
 
-.lesson time {
-  display:block;
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:4px;
+.lesson:last-child {
+  border-bottom: 0;
 }
 
-.info-box {
-  background:#f8fbff;
-  border-left:4px solid var(--blue2);
-  padding:13px;
-  border-radius:6px;
-  margin-top:15px;
+.time {
+  flex-shrink: 0;
+  width: 105px;
+  color: var(--muted);
+  font-family: monospace;
 }
 
-footer {
-  text-align:center;
-  color:var(--muted);
-  padding:25px;
-  font-size:13px;
+.day-title {
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--border);
+  color: #67aafc;
+  font-weight: bold;
+}
+
+.info-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.info-item:last-child {
+  border-bottom: 0;
+}
+
+.info-item b {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.info-item span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.present {
+  color: #35d477 !important;
+  font-style: normal;
 }
 
 .modal {
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#0008;
-  z-index:20;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
+  display: none;
+  position: fixed;
+  inset: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #000b;
+  z-index: 10;
 }
 
-.modal.show {
-  display:flex;
+.modal-box {
+  width: 100%;
+  max-width: 340px;
+  padding: 20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 13px;
 }
 
-.modal-content {
-  width:100%;
-  max-width:420px;
-  background:white;
-  border-radius:12px;
-  padding:22px;
-  box-shadow:0 5px 25px #0005;
+.modal-box h3 {
+  margin-top: 0;
 }
 
-.modal-content h2 {
-  margin-top:0;
+.modal-box p {
+  color: var(--muted);
+  font-size: 14px;
 }
 
-.modal-row {
-  padding:9px 0;
-  border-bottom:1px solid var(--border);
+.modal-box b {
+  color: white;
 }
 
 .close {
-  width:100%;
-  margin-top:18px;
-  border:0;
-  padding:11px;
-  border-radius:7px;
-  background:var(--blue);
-  color:white;
-  cursor:pointer;
-  font-weight:bold;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: 0;
+  border-radius: 7px;
+  background: var(--blue);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-@media(max-width:600px) {
+footer {
+  padding: 20px;
+  color: var(--muted);
+  text-align: center;
+  font-size: 12px;
+}
+
+@media (max-width: 600px) {
   main {
-    padding:12px;
+    padding: 12px;
   }
 
-  th,
-  td {
-    padding:8px 5px;
-    font-size:13px;
+  .subject-header {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
-  header h1 {
-    font-size:21px;
-  }
-
-  .grade {
-    width:32px;
-    height:32px;
+  nav button {
+    padding: 8px 10px;
+    font-size: 12px;
   }
 }
 </style>
@@ -305,16 +323,18 @@ footer {
 <body>
 
 <header>
-  <h1>Elektroniczny Dziennik</h1>
-  <p>Zespół Szkół Budowlano-Geodezyjnych</p>
-  <p class="student">Uczeń: Adrian Szutko · Klasa 4F</p>
+  <div class="header-title">Elektroniczny Dziennik</div>
+  <div class="student">Adrian Szutko · klasa 4F · uczeń</div>
 </header>
 
 <nav>
-  <button class="tab active" data-tab="start">Start</button>
-  <button class="tab" data-tab="grades">Oceny</button>
-  <button class="tab" data-tab="schedule">Plan lekcji</button>
-  <button class="tab" data-tab="teachers">Nauczyciele</button>
+  <button class="active" onclick="showTab('start', this)">Start</button>
+  <button onclick="showTab('grades', this)">Oceny</button>
+  <button onclick="showTab('attendance', this)">Frekwencja</button>
+  <button onclick="showTab('schedule', this)">Plan lekcji</button>
+  <button onclick="showTab('teachers', this)">Nauczyciele</button>
+  <button onclick="showTab('remarks', this)">Uwagi</button>
+  <button onclick="showTab('messages', this)">Wiadomości</button>
 </nav>
 
 <main>
@@ -322,88 +342,96 @@ footer {
 <section id="start" class="section active">
   <h2>Panel główny</h2>
 
-  <div class="cards">
-    <div class="card">
-      Uczeń
-      <strong style="font-size:21px;">Adrian Szutko</strong>
-      <small>klasa 4F</small>
+  <div class="stats">
+    <div class="stat-card">
+      <span>Średnia ważona</span>
+      <strong id="generalAverage">-</strong>
     </div>
 
-    <div class="card">
-      Średnia ocen
-      <strong id="mainAverage">-</strong>
-      <small>średnia ważona</small>
+    <div class="stat-card">
+      <span>Frekwencja</span>
+      <strong id="attendanceAverage">-</strong>
     </div>
 
-    <div class="card">
-      Przedmioty
-      <strong id="subjectCount">0</strong>
-      <small>na liście klasy 4F</small>
-    </div>
-
-    <div class="card">
-      Oceny
-      <strong id="gradeCount">0</strong>
-      <small>wpisanych ocen</small>
+    <div class="stat-card">
+      <span>Uczeń</span>
+      <strong>4F</strong>
     </div>
   </div>
 
   <div class="panel">
-    <h3>Informacje o ocenach</h3>
-    <p>
-      Oceny są obliczane jako średnia ważona.
-      Kliknij dowolny kwadrat z oceną, aby zobaczyć szczegóły.
-    </p>
-
-    <div class="info-box">
-      <b>Wagi ocen:</b><br>
-      Sprawdzian: 4<br>
-      Kartkówka: 2<br>
-      Odpowiedź ustna: 1<br>
-      Praca na lekcji: 1
-    </div>
+    <h2>Najbliższe zajęcia</h2>
+    <div id="nextLessons"></div>
   </div>
 </section>
 
 <section id="grades" class="section">
   <h2>Oceny</h2>
+  <div class="panel">
+    <div id="gradesContainer"></div>
+  </div>
+</section>
+
+<section id="attendance" class="section">
+  <h2>Frekwencja</h2>
 
   <div class="panel">
-    <p class="muted">
-      Kliknij kwadrat z oceną, aby zobaczyć nauczyciela, rodzaj pracy i datę.
-    </p>
-
-    <table>
-      <thead>
-        <tr>
-          <th>Przedmiot</th>
-          <th>Oceny</th>
-          <th>Średnia ważona</th>
-        </tr>
-      </thead>
-      <tbody id="gradesTable"></tbody>
-    </table>
+    <p id="attendanceSummary"></p>
+    <div id="attendanceContainer"></div>
   </div>
 </section>
 
 <section id="schedule" class="section">
   <h2>Plan lekcji</h2>
-  <div id="scheduleBox" class="schedule"></div>
+  <div id="scheduleContainer"></div>
 </section>
 
 <section id="teachers" class="section">
   <h2>Nauczyciele</h2>
+  <div class="panel" id="teachersContainer"></div>
+</section>
+
+<section id="remarks" class="section">
+  <h2>Uwagi</h2>
 
   <div class="panel">
-    <table>
-      <thead>
-        <tr>
-          <th>Przedmiot</th>
-          <th>Nauczyciel</th>
-        </tr>
-      </thead>
-      <tbody id="teachersTable"></tbody>
-    </table>
+    <div class="info-item">
+      <b class="present">Pozytywna - aktywność na zajęciach zawodowych</b>
+      <span>
+        Wzorowe przygotowanie stanowiska pomiarowego podczas ćwiczeń z fotowoltaiki.
+        Wpisała: Beata Polonis.
+      </span>
+    </div>
+
+    <div class="info-item">
+      <b>Informacyjna - udział w konkursie</b>
+      <span>
+        Zgłoszenie do etapu szkolnego olimpiady wiedzy technicznej.
+        Wpisał: Paweł Klim.
+      </span>
+    </div>
+  </div>
+</section>
+
+<section id="messages" class="section">
+  <h2>Wiadomości</h2>
+
+  <div class="panel">
+    <div class="info-item">
+      <b>Dorota Puciłowska - przygotowanie do wypracowania</b>
+      <span>
+        Przypominam o powtórzeniu motywów literackich z epoki Młodej Polski
+        przed piątkową pracą klasową.
+      </span>
+    </div>
+
+    <div class="info-item">
+      <b>Tomasz Rolak - materiały na uprawnienia G1</b>
+      <span>
+        Zestaw pytań egzaminacyjnych z ochrony przeciwporażeniowej
+        został udostępniony na dysku szkolnym.
+      </span>
+    </div>
   </div>
 </section>
 
@@ -413,11 +441,15 @@ footer {
   Elektroniczny Dziennik · Adrian Szutko · Klasa 4F
 </footer>
 
-<div id="gradeModal" class="modal">
-  <div class="modal-content">
-    <h2>Szczegóły oceny</h2>
-    <div id="modalDetails"></div>
-    <button class="close" onclick="closeModal()">Zamknij</button>
+<div id="gradeModal" class="modal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <h3 id="modalSubject"></h3>
+    <p>Ocena: <b id="modalGrade"></b></p>
+    <p>Rodzaj pracy: <b id="modalType"></b></p>
+    <p>Waga: <b id="modalWeight"></b></p>
+    <p>Data: <b id="modalDate"></b></p>
+    <p>Nauczyciel: <b id="modalTeacher"></b></p>
+    <button class="close" onclick="closeGradeModal()">Zamknij</button>
   </div>
 </div>
 
@@ -436,254 +468,421 @@ const subjects = [
   "Obsługa Systemów Energetyki Odnawialnej",
   "Systemy Energii Odnawialnej",
   "Wychowanie Fizyczne",
-  "Umiejętności Rynkowe - Przygotowanie do egzaminu na uprawnienia elektryczne G1"
+  "Umiejętności Rynkowe - przygotowanie do egzaminu G1"
 ];
 
 const teachers = {
-  "Matematyka":"Joanna Wasilewska",
-  "Fizyka":"Paweł Klim",
-  "Fizyka Techniczna":"Paweł Klim",
-  "Język Angielski":"Anna Mróz",
-  "Język Angielski w Budownictwie":"Anna Mróz",
-  "Język Polski":"Dorota Puciłowska",
-  "Geografia":"Nie podano",
-  "Historia":"Nie podano",
-  "Język Niemiecki":"Nie podano",
-  "Systemy Energii Odnawialnej":"Beata Polonis",
-  "Obsługa Systemów Energetyki Odnawialnej":"Beata Polonis",
-  "Kształtowanie Kompetencji Zawodowych":"Beata Polonis",
-  "Wychowanie Fizyczne":"Zbigniew Kulikowski",
-  "Umiejętności Rynkowe - Przygotowanie do egzaminu na uprawnienia elektryczne G1":"Tomasz Rolak"
+  "Język Polski": "Dorota Puciłowska",
+  "Matematyka": "Joanna Wasilewska",
+  "Język Angielski": "Anna Mróz",
+  "Język Angielski w Budownictwie": "Anna Mróz",
+  "Fizyka": "Paweł Klim",
+  "Fizyka Techniczna": "Paweł Klim",
+  "Geografia": "Nie podano",
+  "Historia": "Nie podano",
+  "Język Niemiecki": "Nie podano",
+  "Kształtowanie Kompetencji Zawodowych": "Beata Polonis",
+  "Obsługa Systemów Energetyki Odnawialnej": "Beata Polonis",
+  "Systemy Energii Odnawialnej": "Beata Polonis",
+  "Wychowanie Fizyczne": "Zbigniew Kulikowski",
+  "Umiejętności Rynkowe - przygotowanie do egzaminu G1": "Tomasz Rolak"
 };
 
-const gradeWeights = {
-  "sprawdzian": 4,
-  "kartkówka": 2,
-  "kartkowka": 2,
-  "odpowiedź ustna": 1,
-  "odpowiedz ustna": 1,
-  "praca na lekcji": 1
-};
-
-const grades = {
+const gradesData = {
   "Język Polski": [
-    {value:"3", type:"Kartkówka", date:"12.10.2026"}
+    { value: "3", type: "Kartkówka", date: "12.10.2026" }
   ],
+
   "Systemy Energii Odnawialnej": [
-    {value:"3", type:"Kartkówka", date:"21.09.2026"},
-    {value:"3", type:"Kartkówka", date:"09.10.2026"}
+    { value: "3", type: "Kartkówka", date: "21.09.2026" },
+    { value: "3", type: "Kartkówka", date: "09.10.2026" }
   ],
+
   "Wychowanie Fizyczne": [
-    {value:"5", type:"Sprawdzian", date:"22.09.2026"},
-    {value:"5-", type:"Praca na lekcji", date:"06.10.2026"}
+    { value: "5", type: "Sprawdzian", date: "22.09.2026" },
+    { value: "5-", type: "Praca na lekcji", date: "06.10.2026" }
   ],
+
   "Obsługa Systemów Energetyki Odnawialnej": [
-    {value:"3", type:"Odpowiedź ustna", date:"10.09.2026"},
-    {value:"4-", type:"Kartkówka", date:"17.09.2026"}
+    { value: "3", type: "Odpowiedź ustna", date: "10.09.2026" },
+    { value: "4-", type: "Kartkówka", date: "17.09.2026" }
   ],
+
   "Język Angielski w Budownictwie": [
-    {value:"6", type:"Kartkówka", date:"25.09.2026"}
+    { value: "6", type: "Kartkówka", date: "25.09.2026" }
   ],
+
   "Język Angielski": [
-    {value:"4", type:"Kartkówka", date:"09.10.2026"}
+    { value: "4", type: "Kartkówka", date: "09.10.2026" }
   ],
+
   "Geografia": [
-    {value:"3", type:"Sprawdzian", date:"04.10.2026"},
-    {value:"3", type:"Kartkówka", date:"27.09.2026"}
+    { value: "3", type: "Sprawdzian", date: "04.10.2026" },
+    { value: "3", type: "Kartkówka", date: "27.09.2026" }
   ],
+
   "Fizyka Techniczna": [
-    {value:"4", type:"Praca na lekcji", date:"05.10.2026"},
-    {value:"2", type:"Praca na lekcji", date:"12.10.2026"}
+    { value: "4", type: "Praca na lekcji", date: "05.10.2026" },
+    { value: "2", type: "Praca na lekcji", date: "12.10.2026" }
   ],
+
   "Fizyka": [
-    {value:"4", type:"Kartkówka", date:"29.09.2026"},
-    {value:"3", type:"Praca na lekcji", date:"30.09.2026"}
+    { value: "4", type: "Kartkówka", date: "29.09.2026" },
+    { value: "3", type: "Praca na lekcji", date: "30.09.2026" }
   ]
 };
 
-const schedule = {
-  "Poniedziałek":[
-    ["08:00 - 08:45","Język Polski"],
-    ["08:55 - 09:40","Język Polski"],
-    ["09:50 - 10:35","Matematyka"],
-    ["10:45 - 11:30","Fizyka Techniczna"],
-    ["11:45 - 12:30","Systemy Energii Odnawialnej"],
-    ["12:40 - 13:25","Geografia"],
-    ["13:35 - 14:20","Umiejętności Rynkowe"],
-    ["14:30 - 15:15","Umiejętności Rynkowe"],
-    ["15:20 - 16:05","Historia"]
+const weights = {
+  "Sprawdzian": 4,
+  "Kartkówka": 2,
+  "Odpowiedź ustna": 1,
+  "Praca na lekcji": 1
+};
+
+const lessonSchedule = {
+  "Poniedziałek": [
+    ["08:00 - 08:45", "Język Polski"],
+    ["08:55 - 09:40", "Język Polski"],
+    ["09:50 - 10:35", "Matematyka"],
+    ["10:45 - 11:30", "Fizyka Techniczna"],
+    ["11:45 - 12:30", "Systemy Energii Odnawialnej"],
+    ["12:40 - 13:25", "Geografia"],
+    ["13:35 - 14:20", "Umiejętności Rynkowe - przygotowanie do egzaminu G1"],
+    ["14:30 - 15:15", "Umiejętności Rynkowe - przygotowanie do egzaminu G1"],
+    ["15:20 - 16:05", "Historia"]
   ],
-  "Wtorek":[
-    ["09:50 - 10:35","Systemy Energii Odnawialnej"],
-    ["10:45 - 11:30","Systemy Energii Odnawialnej"],
-    ["11:45 - 12:30","Matematyka"],
-    ["12:40 - 13:25","Fizyka"],
-    ["13:35 - 14:20","Wychowanie Fizyczne"],
-    ["14:30 - 15:15","Język Angielski"]
+
+  "Wtorek": [
+    ["09:50 - 10:35", "Systemy Energii Odnawialnej"],
+    ["10:45 - 11:30", "Systemy Energii Odnawialnej"],
+    ["11:45 - 12:30", "Matematyka"],
+    ["12:40 - 13:25", "Fizyka"],
+    ["13:35 - 14:20", "Wychowanie Fizyczne"],
+    ["14:30 - 15:15", "Język Angielski"]
   ],
-  "Środa":[
-    ["08:55 - 09:40","Fizyka"],
-    ["09:50 - 10:35","Język Angielski w Budownictwie"],
-    ["10:45 - 11:30","Zajęcia z wychowawcą"],
-    ["11:45 - 12:30","Matematyka"],
-    ["12:40 - 13:25","Kształtowanie Kompetencji Zawodowych"],
-    ["13:35 - 14:20","Kształtowanie Kompetencji Zawodowych"]
+
+  "Środa": [
+    ["08:55 - 09:40", "Fizyka"],
+    ["09:50 - 10:35", "Język Angielski w Budownictwie"],
+    ["10:45 - 11:30", "Zajęcia z wychowawcą"],
+    ["11:45 - 12:30", "Matematyka"],
+    ["12:40 - 13:25", "Kształtowanie Kompetencji Zawodowych"]
   ],
-  "Czwartek":[
-    ["08:00 - 08:45","Język Polski"],
-    ["08:55 - 09:40","Język Polski"],
-    ["09:50 - 10:35","Fizyka"],
-    ["10:45 - 11:30","Język Angielski"],
-    ["11:45 - 12:30","Wychowanie Fizyczne"],
-    ["12:40 - 13:25","Systemy Energii Odnawialnej"]
+
+  "Czwartek": [
+    ["08:00 - 08:45", "Geografia"],
+    ["08:55 - 09:40", "Obsługa Systemów Energetyki Odnawialnej"],
+    ["09:50 - 10:35", "Obsługa Systemów Energetyki Odnawialnej"],
+    ["10:45 - 11:30", "Obsługa Systemów Energetyki Odnawialnej"],
+    ["11:45 - 12:30", "Obsługa Systemów Energetyki Odnawialnej"],
+    ["12:40 - 13:25", "Obsługa Systemów Energetyki Odnawialnej"],
+    ["13:35 - 14:20", "Obsługa Systemów Energetyki Odnawialnej"]
   ],
-  "Piątek":[
-    ["08:00 - 08:45","Geografia"],
-    ["08:55 - 09:40","Matematyka"],
-    ["09:50 - 10:35","Obsługa Systemów Energii Odnawialnej"],
-    ["10:45 - 11:30","Obsługa Systemów Energii Odnawialnej"],
-    ["11:45 - 12:30","Język Angielski w Budownictwie"]
+
+  "Piątek": [
+    ["08:55 - 09:40", "Wychowanie Fizyczne"],
+    ["09:50 - 10:35", "Wychowanie Fizyczne"],
+    ["10:45 - 11:30", "Matematyka"],
+    ["11:45 - 12:30", "Język Angielski"],
+    ["12:40 - 13:25", "Systemy Energii Odnawialnej"],
+    ["13:35 - 14:20", "Język Polski"],
+    ["14:30 - 15:15", "Język Angielski"]
   ]
 };
 
-function numericGrade(val) {
-  if (val.endsWith("-")) return parseFloat(val) - 0.25;
-  if (val.endsWith("+")) return parseFloat(val) + 0.25;
-  return parseFloat(val);
+const dayNames = [
+  "Niedziela",
+  "Poniedziałek",
+  "Wtorek",
+  "Środa",
+  "Czwartek",
+  "Piątek",
+  "Sobota"
+];
+
+function gradeToNumber(value) {
+  if (value.endsWith("+")) {
+    return Number(value[0]) + 0.25;
+  }
+
+  if (value.endsWith("-")) {
+    return Number(value[0]) - 0.25;
+  }
+
+  return Number(value);
 }
 
-function gradeAverage(subject) {
-  const list = grades[subject] || [];
-  if (list.length === 0) return null;
+function typeClass(type) {
+  if (type === "Sprawdzian") return "sprawdzian";
+  if (type === "Kartkówka") return "kartkowka";
+  if (type === "Odpowiedź ustna") return "odpowiedz";
+  return "praca";
+}
 
-  let weightedSum = 0;
-  let totalWeight = 0;
+function subjectAverage(grades) {
+  if (!grades || grades.length === 0) {
+    return "-";
+  }
 
-  list.forEach(item => {
-    const key = item.type.toLowerCase();
-    const weight = gradeWeights[key] || 1;
-    weightedSum += numericGrade(item.value) * weight;
-    totalWeight += weight;
+  let sum = 0;
+  let weightSum = 0;
+
+  grades.forEach(grade => {
+    const weight = weights[grade.type] || 1;
+    sum += gradeToNumber(grade.value) * weight;
+    weightSum += weight;
   });
 
-  return weightedSum / totalWeight;
-}
-
-function formatAverage(val) {
-  if (val === null) return "Brak ocen";
-  return val.toFixed(2).replace(".", ",");
+  return (sum / weightSum).toFixed(2);
 }
 
 function renderGrades() {
-  const table = document.getElementById("gradesTable");
-  table.innerHTML = "";
+  const container = document.getElementById("gradesContainer");
+  container.innerHTML = "";
+
+  let totalSum = 0;
+  let totalWeights = 0;
 
   subjects.forEach(subject => {
-    const row = document.createElement("tr");
-    const subGrades = grades[subject] || [];
+    const grades = gradesData[subject] || [];
 
-    const cellSubject = document.createElement("td");
-    cellSubject.textContent = subject;
+    const row = document.createElement("div");
+    row.className = "subject-row";
 
-    const cellGrades = document.createElement("td");
-    const gradeContainer = document.createElement("div");
-    gradeContainer.className = "grades";
+    const header = document.createElement("div");
+    header.className = "subject-header";
 
-    if (subGrades.length === 0) {
-      gradeContainer.innerHTML = '<span class="no-grades">Brak ocen</span>';
+    const name = document.createElement("div");
+    name.className = "subject-name";
+    name.textContent = subject;
+
+    const average = document.createElement("div");
+    average.className = "average";
+    average.textContent = "Średnia: " + subjectAverage(grades);
+
+    header.appendChild(name);
+    header.appendChild(average);
+    row.appendChild(header);
+
+    if (grades.length === 0) {
+      const empty = document.createElement("div");
+      empty.className = "no-grades";
+      empty.textContent = "Brak ocen";
+      row.appendChild(empty);
     } else {
-      subGrades.forEach(gradeItem => {
-        const btn = document.createElement("button");
-        btn.className = "grade";
-        btn.textContent = gradeItem.value;
-        btn.onclick = function() {
-          showGradeDetails(subject, gradeItem);
+      const gradesBox = document.createElement("div");
+      gradesBox.className = "grades";
+
+      grades.forEach(grade => {
+        const box = document.createElement("div");
+        box.className = "grade " + typeClass(grade.type);
+        box.textContent = grade.value;
+
+        box.onclick = function() {
+          openGradeModal(subject, grade);
         };
-        gradeContainer.appendChild(btn);
+
+        gradesBox.appendChild(box);
+
+        const weight = weights[grade.type] || 1;
+        totalSum += gradeToNumber(grade.value) * weight;
+        totalWeights += weight;
       });
+
+      row.appendChild(gradesBox);
     }
-    cellGrades.appendChild(gradeContainer);
 
-    const cellAvg = document.createElement("td");
-    cellAvg.className = "average";
-    cellAvg.textContent = formatAverage(gradeAverage(subject));
-
-    row.appendChild(cellSubject);
-    row.appendChild(cellGrades);
-    row.appendChild(cellAvg);
-    table.appendChild(row);
+    container.appendChild(row);
   });
-}
 
-function showGradeDetails(subject, gradeItem) {
-  const teacher = teachers[subject] || "Nie podano";
-  const weight = gradeWeights[gradeItem.type.toLowerCase()] || 1;
+  const generalAverage = totalWeights > 0
+    ? (totalSum / totalWeights).toFixed(2)
+    : "-";
 
-  document.getElementById("modalDetails").innerHTML =
-    '<div class="modal-row"><b>Przedmiot:</b><br>' + subject + '</div>' +
-    '<div class="modal-row"><b>Ocena:</b><br>' + gradeItem.value + '</div>' +
-    '<div class="modal-row"><b>Nauczyciel:</b><br>' + teacher + '</div>' +
-    '<div class="modal-row"><b>Rodzaj pracy:</b><br>' + gradeItem.type + '</div>' +
-    '<div class="modal-row"><b>Data:</b><br>' + gradeItem.date + '</div>' +
-    '<div class="modal-row"><b>Waga:</b><br>' + weight + '</div>';
-
-  document.getElementById("gradeModal").classList.add("show");
-}
-
-function closeModal() {
-  document.getElementById("gradeModal").classList.remove("show");
-}
-
-function renderTeachers() {
-  const table = document.getElementById("teachersTable");
-  table.innerHTML = "";
-
-  subjects.forEach(subject => {
-    const row = document.createElement("tr");
-    const tdSub = document.createElement("td");
-    tdSub.textContent = subject;
-
-    const tdTeacher = document.createElement("td");
-    tdTeacher.textContent = teachers[subject] || "Nie podano";
-
-    row.appendChild(tdSub);
-    row.appendChild(tdTeacher);
-    table.appendChild(row);
-  });
+  document.getElementById("generalAverage").textContent = generalAverage;
 }
 
 function renderSchedule() {
-  const box = document.getElementById("scheduleBox");
-  box.innerHTML = "";
+  const container = document.getElementById("scheduleContainer");
+  container.innerHTML = "";
 
-  Object.entries(schedule).forEach(([day, lessons]) => {
-    const dayBox = document.createElement("div");
-    dayBox.className = "day";
+  Object.entries(lessonSchedule).forEach(([day, lessons]) => {
+    const card = document.createElement("div");
+    card.className = "day-card";
 
-    const h3 = document.createElement("h3");
-    h3.textContent = day;
-    dayBox.appendChild(h3);
+    const title = document.createElement("div");
+    title.className = "day-title";
+    title.textContent = day;
+    card.appendChild(title);
 
-    lessons.forEach(([time, subjectName]) => {
-      const lessonDiv = document.createElement("div");
-      lessonDiv.className = "lesson";
+    lessons.forEach(([time, subject]) => {
+      const lesson = document.createElement("div");
+      lesson.className = "lesson";
 
-      const timeEl = document.createElement("time");
-      timeEl.textContent = time;
+      const timeBox = document.createElement("span");
+      timeBox.className = "time";
+      timeBox.textContent = time;
 
-      lessonDiv.appendChild(timeEl);
-      lessonDiv.appendChild(document.createTextNode(subjectName));
-      dayBox.appendChild(lessonDiv);
+      const subjectBox = document.createElement("span");
+      subjectBox.textContent = subject;
+
+      lesson.appendChild(timeBox);
+      lesson.appendChild(subjectBox);
+      card.appendChild(lesson);
     });
 
-    box.appendChild(dayBox);
+    container.appendChild(card);
   });
 }
 
-function updateStatistics() {
-  let totalGrades = 0;
-  let weightedSum = 0;
-  let totalWeight = 0;
+function renderNextLessons() {
+  const container = document.getElementById("nextLessons");
+  container.innerHTML = "";
 
-  Object.values(grades).forEach(subGrades => {
-    totalGrades += subGrades
+  const lessons = lessonSchedule["Poniedziałek"].slice(0, 3);
+
+  lessons.forEach(([time, subject]) => {
+    const lesson = document.createElement("div");
+    lesson.className = "lesson";
+
+    const timeBox = document.createElement("span");
+    timeBox.className = "time";
+    timeBox.textContent = time;
+
+    const subjectBox = document.createElement("span");
+    subjectBox.textContent = subject;
+
+    lesson.appendChild(timeBox);
+    lesson.appendChild(subjectBox);
+    container.appendChild(lesson);
+  });
+}
+
+function renderTeachers() {
+  const container = document.getElementById("teachersContainer");
+  container.innerHTML = "";
+
+  subjects.forEach(subject => {
+    const item = document.createElement("div");
+    item.className = "info-item";
+
+    const teacher = document.createElement("b");
+    teacher.textContent = teachers[subject] || "Nie podano";
+
+    const name = document.createElement("span");
+    name.textContent = subject;
+
+    item.appendChild(teacher);
+    item.appendChild(name);
+    container.appendChild(item);
+  });
+}
+
+function formatDate(date) {
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+
+  return day + "." + month + "." + year;
+}
+
+function renderAttendance() {
+  const container = document.getElementById("attendanceContainer");
+  const summary = document.getElementById("attendanceSummary");
+
+  container.innerHTML = "";
+
+  /*
+    Zakres frekwencji:
+    od 02.09.2026 do 21.10.2026.
+    Wszystkie lekcje są oznaczone jako obecność.
+  */
+  const startDate = new Date(2026, 8, 2);
+  const endDate = new Date(2026, 9, 21);
+
+  let totalLessons = 0;
+
+  for (
+    let date = new Date(startDate);
+    date <= endDate;
+    date.setDate(date.getDate() + 1)
+  ) {
+    const dayName = dayNames[date.getDay()];
+    const lessons = lessonSchedule[dayName];
+
+    if (!lessons) {
+      continue;
+    }
+
+    lessons.forEach(([time, subject]) => {
+      totalLessons++;
+
+      const item = document.createElement("div");
+      item.className = "info-item";
+
+      const title = document.createElement("b");
+      title.textContent = formatDate(date) + " - " + subject;
+
+      const status = document.createElement("span");
+      status.className = "present";
+      status.textContent = "Obecność";
+
+      item.appendChild(title);
+      item.appendChild(status);
+      container.appendChild(item);
+    });
+  }
+
+  summary.textContent =
+    "Obecności: " + totalLessons +
+    " / " + totalLessons +
+    " lekcji. Frekwencja: 100%.";
+
+  document.getElementById("attendanceAverage").textContent = "100%";
+}
+
+function openGradeModal(subject, grade) {
+  document.getElementById("modalSubject").textContent = subject;
+  document.getElementById("modalGrade").textContent = grade.value;
+  document.getElementById("modalType").textContent = grade.type;
+  document.getElementById("modalWeight").textContent =
+    weights[grade.type] || 1;
+  document.getElementById("modalDate").textContent = grade.date;
+  document.getElementById("modalTeacher").textContent =
+    teachers[subject] || "Nie podano";
+
+  document.getElementById("gradeModal").style.display = "flex";
+}
+
+function closeGradeModal() {
+  document.getElementById("gradeModal").style.display = "none";
+}
+
+function closeModal(event) {
+  if (event.target.id === "gradeModal") {
+    closeGradeModal();
+  }
+}
+
+function showTab(id, button) {
+  document.querySelectorAll(".section").forEach(section => {
+    section.classList.remove("active");
+  });
+
+  document.querySelectorAll("nav button").forEach(navButton => {
+    navButton.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+  button.classList.add("active");
+}
+
+renderGrades();
+renderSchedule();
+renderNextLessons();
+renderTeachers();
+renderAttendance();
+</script>
+
+</body>
+</html>
